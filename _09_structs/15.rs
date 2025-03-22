@@ -7,21 +7,21 @@ struct BobDylanSong {
 }
 
 impl BobDylanSong {
-    // Mutable struct value (self param takes ownership, has permission to mutate)
-    fn double_length(mut self) {
-        self.duration_secs = self.duration_secs * 2;
-        println!("{:#?}", self);
-    }
-    // fn double_length() {
-    //     println!("test");
-    // }
-
     // Immutable struct value (self param takes ownership)
     fn display_song_info(self) {
         println!("Title: {}", self.title);
         println!("Release Year: {}", self.release_year);
         println!("Duration: {}", self.duration_secs);
     }
+
+    // Mutable struct value (self param takes ownership, has permission to mutate)
+    fn double_length(mut self) {
+        self.duration_secs = self.duration_secs * 2;
+        println!("{:#?}", self);
+    }
+    // fn print_message() {
+    //     println!("This is an associate function");
+    // }
 }
 
 fn main() {
@@ -35,7 +35,8 @@ fn main() {
     // the BobDylanSong self variable, consuming the struct.
     // So, we cannot use another method that use the same
     // struct again, like double_lenth. Even if we want to
-    // use just for reading purpose.
+    // use just for reading purpose without the mutation.
+    
     // song.double_length(); // don't work if we use self on it.
     // Examples about it using references it will use in 3 and 4 examples.
 
@@ -44,6 +45,5 @@ fn main() {
     // make just a simple println, we're now getting not 
     // a method but a associated function. So, we should
     // use another syntax.
-    // BobDylanSong::double_length();
+    // BobDylanSong::print_message();
 }
-

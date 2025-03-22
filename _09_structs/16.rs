@@ -1,7 +1,5 @@
-// self
-// mut self
-// &self
-// &mut self
+// self and mut self used in 15.rs file examples
+// &self and &mut self examples in this files
 #[derive(Debug)]
  
 struct BobDylanSong {
@@ -37,5 +35,5 @@ fn main() {
         duration_secs: 201
     };
     song.display_song_info();
-    song.double_length(); // &song // rust do this behind the scenes
+    song.double_length(); // rust sends song reference in background
 }
