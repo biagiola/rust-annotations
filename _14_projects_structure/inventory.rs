@@ -1,11 +1,13 @@
+pub mod products; // assume we created the products.rs file for the import
 pub const FLOOR_SPACE: i32 = 10_000;
 pub const MANAGER: &str = "Ivan Iventory";
 
 pub fn talk_to_manager() {
-    println!("Hey, {MANAGER}, how's your coffee?")
+    println!("Hey, {}, how's your coffee?", MANAGER); // relative path
+    // println!("Hey, {}, how's your coffee?", crate::inventory::MANAGER); // but just to know how to use variables using absolute path
+    // println!("{:?}", products::ProductCategory::Ladder); // relative path
+    // println!("{:?}", crate::inventory::products::ProductCategory::Ladder); // absolute path
 }
-
-pub mod products; // assume we created the products.rs file for the import
 
 // 2.Option: inventory/products.rs
 // 3.Option: inventory/products/mod.rs
