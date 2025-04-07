@@ -1,13 +1,13 @@
 mod inventory;
 mod orders;
 
-// use inventory::products::{Item, ProductCategory};
-// use inventory::products::Item;
-
 // use inventory::products;
 // use inventory::products{ProductCategory};
-use inventory::products::{self, ProductCategory}; // same as two line above
-use inventory::{FLOOR_SPACE, talk_to_manager};
+// use inventory::products::{self, ProductCategory}; // same as two line above
+
+// use inventory::products::Item;
+use inventory::products::{Item, ProductCategory};
+use inventory::{FLOOR_SPACE};
 
 fn main() {
     println!(
@@ -17,15 +17,13 @@ fn main() {
         FLOOR_SPACE
     );
 
-    talk_to_manager();
-
-    let favorite_category = products::ProductCategory::Hammer;
+    let favorite_category = ProductCategory::Hammer;
     println!("My fav category of item is {favorite_category:?}");
 
-    let tall_lader = products::Item {
-        name: String::from("Ladder-o-matic 2000"),
-        category: favorite_category,
-        quantity: 100
-    };
+    let tall_lader = Item::new(
+        String::from("Ladder-o-matic 2000"),
+        favorite_category,
+        100
+    );
     println!("{:#?}", tall_lader);
 }

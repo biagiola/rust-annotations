@@ -1,4 +1,4 @@
-pub mod products; // assume we created the products.rs file for the import
+pub mod products;
 pub const FLOOR_SPACE: i32 = 10_000;
 pub const MANAGER: &str = "Ivan Iventory";
 
