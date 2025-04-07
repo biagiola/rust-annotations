@@ -1,0 +1,1 @@
+pub const MANAGER: &str = "Oliver Anderson";
