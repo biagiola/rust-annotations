@@ -4,5 +4,5 @@ members = [
     "_05_control_flow",
     "_06_ownership",
     "_07_references_and_borrowing",
-    "warehouse"
+    "_14_projects_structure/warehouse"
 ]
