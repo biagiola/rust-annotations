@@ -1,5 +1,5 @@
 [package]
-name = "_14_projects_structure"
+name = "warehouse"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,6 +7,9 @@ edition = "2021"
 rand = "0.8.5"
 fake = { version = "2.9.2", features = ["derive"] }
 
+[lib]
+path = "lib.rs"
+
 [[bin]]
-name = "_14_projects_structure"
+name = "warehouse"
 path = "main.rs"

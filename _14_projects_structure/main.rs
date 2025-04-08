@@ -1,15 +1,11 @@
-mod inventory;
-mod orders;
-
 use fake::{Fake, Faker};
-
-use inventory::{
+use warehouse::{
     Item,
     ProductCategory,
     FLOOR_SPACE,
-    MANAGER as INVENTORY_MANAGER
+    INVENTORY_MANAGER,
+    ORDERS_MANAGER
 };
-use orders::MANAGER as ORDERS_MANAGER;
 
 fn main() {
     println!(
@@ -20,5 +16,8 @@ fn main() {
     );
 
     let fake_item: Item = Faker.fake();
-    println!("{:?}", fake_item);
+    println!("Fake Item: {:?}", fake_item);
+
+    let random_category: ProductCategory = Faker.fake();
+    println!("Random Category: {:?}", random_category);
 }

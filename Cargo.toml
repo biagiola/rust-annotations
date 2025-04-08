@@ -1,2 +1,8 @@
 [workspace]
-members = ["_04_functions", "_05_control_flow", "_06_ownership", "_07_references_and_borrowing"]
+members = [
+    "_04_functions",
+    "_05_control_flow",
+    "_06_ownership",
+    "_07_references_and_borrowing",
+    "warehouse"
+]
