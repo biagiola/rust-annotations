@@ -1,0 +1,12 @@
+[package]
+name = "_14_projects_structure"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rand = "0.8.5"
+fake = { version = "2.9.2", features = ["derive"] }
+
+[[bin]]
+name = "_14_projects_structure"
+path = "main.rs"
