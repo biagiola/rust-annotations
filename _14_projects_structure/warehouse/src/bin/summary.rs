@@ -4,6 +4,7 @@ use warehouse::{
     ORDERS_MANAGER
 };
 
+/// Get a summary of our current managers
 fn main() {
     println!(
         "Summary.rs: Our manager are {} and {}. We have {} square feet of space",

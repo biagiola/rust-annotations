@@ -1,4 +1,6 @@
+/// Tools for inventory managment
 pub mod inventory;
+/// Tools for order manager
 pub mod orders;
 
 pub use inventory::{
