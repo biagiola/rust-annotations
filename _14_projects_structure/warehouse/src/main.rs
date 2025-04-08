@@ -9,7 +9,7 @@ use warehouse::{
 
 fn main() {
     println!(
-        "Our managers are {} and {}. We have {} square feet of floor space",
+        "Main: Our managers are {} and {}. We have {} square feet of floor space",
         INVENTORY_MANAGER,
         ORDERS_MANAGER,
         FLOOR_SPACE
