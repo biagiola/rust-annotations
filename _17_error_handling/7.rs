@@ -16,27 +16,13 @@ fn main() {
 fn read_file() -> Result<String, io::Error> {
     // set file name to search
     println!("Please enter the name of the file you'd like to read:");
+
     let mut input: String = String::new();
+    stdin().read_line(&mut input)?; // if it's the okay variant, we continue with the logic
 
-    let user_requested_file = stdin().read_line(&mut input);
-    if let Err(error) = user_requested_file {
-        // return Result::Err(error);
-        return Err(error);
-    }
-
-    // open the file
-    let mut file = match File::open(&input.trim()) {
-        Ok(file) => file,
-        Err(error) => return Err(error)
-    };
-
-    // read its content
+    // open the file and read its content
     let mut file_content: String = String::new();
-    let read_operation = file.read_to_string(&mut file_content);
-
-    if let Err(error)  = read_operation {
-        return Err(error)
-    }
+    File::open(&input.trim())?.read_to_string(&mut file_content)?;; // if there's an error, the try operator will terminate automatically and return its error
 
     Ok(file_content)
 }
