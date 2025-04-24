@@ -1,7 +1,5 @@
-use std::fs::File;
-use std::error::Error;
-use std::process;
-use std::io::{self, stdin, Read};
+use std::fs;
+use std::io::{self, stdin};
 
 fn main() {
     let file_result = read_file();
@@ -21,10 +19,7 @@ fn read_file() -> Result<String, io::Error> {
     stdin().read_line(&mut input)?; // if it's the okay variant, we continue with the logic
 
     // open the file and read its content
-    let mut file_content: String = String::new();
-    File::open(&input.trim())?.read_to_string(&mut file_content)?;; // if there's an error, the try operator will terminate automatically and return its error
-
-    Ok(file_content)
+    fs::read_to_string(input.trim())
 }
 
 // Side notes
@@ -35,3 +30,4 @@ fn read_file() -> Result<String, io::Error> {
 // also, read_line captures the break line as one more character too, example story.txt/n
 // ----------------
 // 5 . let read_operation: Result<usize, Error> = file.read_to_string(&mut file_content);
+// 6 . read_to_string exists on File but also on fs and they are similars.
