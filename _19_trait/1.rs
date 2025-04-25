@@ -2,9 +2,9 @@ use std::collections::HashMap;
 
 trait Accommadation {
     fn get_description(&self) -> String {
-        String::from("A wonderful place to stay"),
-        guest: vec![],
+        String::from("A wonderful place to stay")
     }
+
     fn book(&mut self, name: &str, nights: u32);
 }
 
@@ -20,6 +20,10 @@ impl Hotel {
             name: name.to_string(),
             reservations: HashMap::new(),
         }
+    }
+
+    fn summarize(&self) -> String {
+        format!("{}: {}", self.name, self.get_description())
     }
 }
 
@@ -56,7 +60,8 @@ impl Accommadation for AirBnb {
 
 fn main() {
     let mut hotel = Hotel::new("The Luxe");
-    println!("{}", hotel.get_description());
+    // println!("{}", hotel.get_description());
+    println!("{}", hotel.summarize());
     hotel.book("Piers", 5);
     println!("{:#?}", hotel);
 
@@ -75,3 +80,10 @@ fn main() {
 // remember that the default return in rust are the empty unit.
 // . notice that the first implementation on Accomadation saves the data on a HashMap
 // and the second on a vector for book fn.
+
+// . for summarize fn, we dont have the get_description fn on the Hotel impl's for it
+// takes from the Accomodation trait.
+// . we can use the default implementation of get_description that we have in the the accommodation or
+// or we can define our own get_description method from the AirBnB struct for example. But
+// we cannot mix both. We cannot relay on the trait definition version and then add on a 
+// funcionality on top of that. That's something possible with other language but not in Rust
