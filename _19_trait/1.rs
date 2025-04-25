@@ -1,7 +1,10 @@
 use std::collections::HashMap;
 
 trait Accommadation {
-    fn get_description(&self) -> String;
+    fn get_description(&self) -> String {
+        String::from("A wonderful place to stay"),
+        guest: vec![],
+    }
     fn book(&mut self, name: &str, nights: u32);
 }
 
@@ -21,10 +24,6 @@ impl Hotel {
 }
 
 impl Accommadation for Hotel {
-    fn get_description(&self) -> String {
-        format!("{} is the pinnacle of luxury", self.name)
-    }
-
     fn book(&mut self, name: &str, nights: u32) {
         self.reservations.insert(name.to_string(), nights);
     }
