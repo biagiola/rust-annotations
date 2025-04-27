@@ -4,6 +4,12 @@ fn main() {
 
 	let result: bool = is_even(-2);
 	println!("{result}");
+
+	let word: &str = "hello";
+    let letter: char = 'l';
+	find_letter(word, letter);
+	// find_letter("Polyndrome", 'y');
+	// println!("{letter:?}")
 }
 
 fn apply_to_jobs(number: i32, title: &str) {
@@ -15,7 +21,9 @@ fn is_even(number: i32) -> bool {
 }
 
 fn find_letter(word: &str, letter: char) {
-	for c in word {
-		print!("{c}");
+	for c in word.chars() {
+		if c == letter {
+			print!("{c}");
+		}
 	}
 }
