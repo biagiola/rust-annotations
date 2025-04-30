@@ -17,6 +17,12 @@ struct Hotel {
     reservations: HashMap<String, u32>
 }
 
+#[derive(Debug)]
+struct AirBnb {
+    host: String,
+    guests: Vec<(String, u32)>
+}
+
 impl Hotel {
     fn new(name: &str) -> Self {
         Self {
@@ -30,19 +36,6 @@ impl Hotel {
     }
 }
 
-impl Accommadation for Hotel {
-    fn book(&mut self, name: &str, nights: u32) {
-        self.reservations.insert(name.to_string(), nights);
-    }
-}
-impl Description for Hotel {} // in this way we're just using the default fn there.
-
-#[derive(Debug)]
-struct AirBnb {
-    host: String,
-    guests: Vec<(String, u32)>
-}
-
 impl AirBnb {
     fn new(host: &str) -> Self {
         Self {
@@ -52,11 +45,20 @@ impl AirBnb {
     }
 }
 
+impl Accommadation for Hotel {
+    fn book(&mut self, name: &str, nights: u32) {
+        self.reservations.insert(name.to_string(), nights);
+    }
+}
+
 impl Accommadation for AirBnb {
     fn book(&mut self, name: &str, nights: u32) {
         self.guests.push((name.to_string(), nights));
     }
 }
+
+impl Description for Hotel {}
+
 impl Description for AirBnb {
     fn get_description(&self) -> String {
         format!("Please enjoy {}'s apartment", self.host)
@@ -93,12 +95,11 @@ fn book_for_one_night<T: Accommadation + Description>(entity: &mut T, guest: &st
 //     second.book(guest, 3);
 // }
 
-// using where clauses
 fn mix_and_match<T, U>(
     first: &mut T,
     second: &mut U,
     guest: &str
-) where
+) where 
     T: Accommadation + Description,
     U: Accommadation
 {
@@ -113,4 +114,3 @@ fn main() {
     let mut air_bnb = AirBnb::new("Peter Schmidt");
     mix_and_match(&mut hotel, &mut air_bnb, "Piers");
 }
-

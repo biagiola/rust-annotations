@@ -1,6 +1,6 @@
 // Lecture: A preview of trait objects
-// A trait Object is an instance of a type that implements a particular trait
-// whose methods will be accessed at runtime using a feature called dynamic dispatch
+// A trait Object is an instance of a type that implements a particular trait.
+// Whose methods will be accessed at runtime using a feature called dynamic dispatch
 use std::collections::HashMap;
 use std::fmt::Display;
 
@@ -95,16 +95,15 @@ fn choose_best_place_to_stay() -> impl Accommadation + Description {
 }
 
 fn main() {
-    let hotel: Hotel<String> = Hotel::new(String::from("The Luxe"));
+    let hotel = Hotel::new(String::from("The Luxe"));
     let airbnb: AirBnb = AirBnb::new("The Golden Standard");
 
-    let stays: Vec<&dyn Description> = vec![&hotel, &airbnb]; // the instance elements on the vec are trait objects
+    let stays: Vec<&dyn Description> = vec![&hotel, &airbnb]; // the instance elements on the vec are trait object
     println!("{}", stays[0].get_description());
     println!("{}", stays[1].get_description());
 
-    // rust know that stays could have some get_description method due the Description trait, but
+    // rust know that "stays" could have get_description method due the Description trait, but
     // just on runtime he will dispatch or figure it out if it's a Hotel or AirBnb trait and its type.
-
 }
 
-// dynamic dispatch: tends to be slower and only work for references - static dispatch
+// dynamic dispatch tends to be slower than static dispatch and only work for references.

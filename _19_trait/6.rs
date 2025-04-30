@@ -17,6 +17,12 @@ struct Hotel {
     reservations: HashMap<String, u32>
 }
 
+#[derive(Debug)]
+struct AirBnb {
+    host: String,
+    guests: Vec<(String, u32)>
+}
+
 impl Hotel {
     fn new(name: &str) -> Self {
         Self {
@@ -30,19 +36,6 @@ impl Hotel {
     }
 }
 
-impl Accommadation for Hotel {
-    fn book(&mut self, name: &str, nights: u32) {
-        self.reservations.insert(name.to_string(), nights);
-    }
-}
-impl Description for Hotel {} // in this way we're just using the default fn there.
-
-#[derive(Debug)]
-struct AirBnb {
-    host: String,
-    guests: Vec<(String, u32)>
-}
-
 impl AirBnb {
     fn new(host: &str) -> Self {
         Self {
@@ -52,11 +45,20 @@ impl AirBnb {
     }
 }
 
+impl Accommadation for Hotel {
+    fn book(&mut self, name: &str, nights: u32) {
+        self.reservations.insert(name.to_string(), nights);
+    }
+}
+
 impl Accommadation for AirBnb {
     fn book(&mut self, name: &str, nights: u32) {
         self.guests.push((name.to_string(), nights));
     }
 }
+
+impl Description for Hotel {}
+
 impl Description for AirBnb {
     fn get_description(&self) -> String {
         format!("Please enjoy {}'s apartment", self.host)
@@ -109,7 +111,7 @@ fn mix_and_match<T, U>(
 }
 
 fn choose_best_place_to_stay() -> impl Accommadation + Description {
-    // Hotel::new("The Luxe") // also work for Hotel
+    // Hotel::new("The Luxe") // work for both structs
     AirBnb::new("The Luxe")
 
     // we can return just one of the two in our fn logic
@@ -125,10 +127,9 @@ fn choose_best_place_to_stay() -> impl Accommadation + Description {
 }
 
 fn main() {
-    let mut hotel = Hotel::new("The Luxe"); // if we use the rust analyser from vs code extension, it will show us now a type of "impl Accommadation" instead of Hotel
+    let mut hotel = Hotel::new("The Luxe"); // if we use the rust analyser from vs code extension, it will show us now a type of "impl Accommadation" instead of "Hotel"
     let mut air_bnb = AirBnb::new("Peter Schmidt");
     // mix_and_match(&mut hotel, &mut air_bnb, "Piers");
     let result = choose_best_place_to_stay();
-    // println!("{result:#?}");
+    // println!("{result:#?}");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 }
-

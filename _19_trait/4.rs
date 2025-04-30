@@ -17,6 +17,12 @@ struct Hotel {
     reservations: HashMap<String, u32>
 }
 
+#[derive(Debug)]
+struct AirBnb {
+    host: String,
+    guests: Vec<(String, u32)>
+}
+
 impl Hotel {
     fn new(name: &str) -> Self {
         Self {
@@ -30,19 +36,6 @@ impl Hotel {
     }
 }
 
-impl Accommadation for Hotel {
-    fn book(&mut self, name: &str, nights: u32) {
-        self.reservations.insert(name.to_string(), nights);
-    }
-}
-impl Description for Hotel {} // in this way we're just using the default fn there.
-
-#[derive(Debug)]
-struct AirBnb {
-    host: String,
-    guests: Vec<(String, u32)>
-}
-
 impl AirBnb {
     fn new(host: &str) -> Self {
         Self {
@@ -52,24 +45,34 @@ impl AirBnb {
     }
 }
 
+impl Accommadation for Hotel {
+    fn book(&mut self, name: &str, nights: u32) {
+        self.reservations.insert(name.to_string(), nights);
+    }
+}
+
 impl Accommadation for AirBnb {
     fn book(&mut self, name: &str, nights: u32) {
         self.guests.push((name.to_string(), nights));
     }
 }
+
+impl Description for Hotel {} // in this way we're just using the default fn there.
+
 impl Description for AirBnb {
     fn get_description(&self) -> String {
         format!("Please enjoy {}'s apartment", self.host)
     }
 }
 
-// multiple trait bound for generic trait bounds example
-// the entity must to implement both, not just one.
+//  example of multiple trait bund.
+//  the entity must to implement both traits, not just one.
 fn book_for_one_night<T: Accommadation + Description>(entity: &mut T, guest: &str) {
     entity.book(guest, 1);
 }
 
-// now we slipt Accomodation into Description, our first argument needs to implements both traits
+// now we split the trait into Accommadation and Description, our first argument needs
+// to implements both traits
 fn mix_and_match(
     first: &mut (impl Accommadation + Description),
     second: &mut impl Accommadation,
@@ -87,4 +90,3 @@ fn main() {
     let mut air_bnb = AirBnb::new("Peter Schmidt");
     mix_and_match(&mut hotel, &mut air_bnb, "Piers");
 }
-
