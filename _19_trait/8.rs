@@ -107,3 +107,15 @@ fn main() {
 }
 
 // dynamic dispatch tends to be slower than static dispatch and only work for references.
+// With static dispatch, as soon as we assign the first value to the stays variable, its type will be inferred
+// from its first value. We might think that we can avoid this by using a trait implemented by our 
+// types, Hotel and Airbnb, which is what we've been doing so far with function parameters and return 
+// values. Thus, we could consider defining something like this:
+// let stays: Vec<impl Description> = vec![hotel, airbnb];
+// However, this is not allowed in this case. Almost correct, but it's not enough yet.
+// For this scenario, we need to use the `dyn` keyword. For example:
+// let stays: Vec<dyn Description> = vec![hotel, airbnb];
+// This is what we call dynamic dispatch.
+// But there's one more thing to note: dynamic dispatch only works for references. So, the correct
+// solution will be:
+// let stays: Vec<&dyn Description> = vec![&hotel, &airbnb];
