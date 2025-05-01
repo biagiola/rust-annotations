@@ -95,11 +95,11 @@ fn choose_best_place_to_stay() -> impl Accommadation + Description {
 }
 
 fn main() {
-    let hotel = Hotel::new(String::from("The Luxe"));
-    let airbnb: AirBnb = AirBnb::new("The Golden Standard");
+    let mut hotel = Hotel::new(String::from("The Luxe"));
+    let mut airbnb: AirBnb = AirBnb::new("The Golden Standard");
 
-    // case for mutable methods
-    let stays: Vec<&mut dyn Description> = vec![&mut hotel, &mut airbnb];
+    // example of trait objects for dynamic dispatch that mutate its values
+    let mut stays: Vec<&mut dyn Accommadation> = vec![&mut hotel, &mut airbnb];
     stays[0].book("Adrew", 3);
     stays[1].book("Lore", 7);
 
