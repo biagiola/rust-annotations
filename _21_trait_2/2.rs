@@ -26,14 +26,14 @@ impl Taxable for Income {
 
 #[derive(Debug)]
 struct Bonus {
-    amount: f64
+    value: f64
 }
 
 impl Taxable for Bonus {
     const TAX_RATE: f64 = 0.50;
 
     fn amount(&self) -> f64 { // now this method it's mandate it by the trait
-        self.amount
+        self.value
     }
 }
 
@@ -41,6 +41,6 @@ fn main() {
     let income = Income { amount: 50000.50 };
     println!("Total tax owned: ${:.2}", income.tax_bill());
 
-    let bonus = Bonus { amount: 100000.23 };
+    let bonus = Bonus { value: 100000.23 };
     println!("Bonus tax owned: ${:.2}", bonus.tax_bill());
 }
