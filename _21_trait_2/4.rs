@@ -10,7 +10,8 @@ trait Investment { // supertrait
 }
 
 // a data struct that implements the Taxable traits must to implement
-// all the functionalities from the super and sub trait
+// all the functionalities from the super and sub trait.
+// Also, Taxable requires Investment but  not the other way around.
 trait Taxable: Investment { // subtrait
     const TAX_RATE: f64 = 0.25;
  
@@ -55,6 +56,20 @@ impl Taxable for Bonus {
     const TAX_RATE: f64 = 0.50; // override the default value
 }
 
+struct QualityTime {
+    minutes: f64,
+}
+
+impl Investment for QualityTime {
+    fn amount(&self) -> f64 {
+        self.minutes
+    }
+
+    fn set_amount(&mut self, new_amount: f64) {
+        self.minutes = new_amount;
+    }
+}
+
 fn main() {
     let mut income = Income { value: 50000.50 };
     println!("Total tax owned: ${:.2}", income.tax_bill());
@@ -65,4 +80,7 @@ fn main() {
     println!("Bonus tax owned: ${:.2}", bonus.tax_bill());
     bonus.double_amount();
     println!("Bonus tax owned: ${:.2}", bonus.tax_bill());
+
+    let weekend = QualityTime { minutes: 120.0 };
+    println!("Relaxation time: {:.2} minutes", weekend.amount());
 }
