@@ -1,7 +1,9 @@
-// Lecture: Implementing the debug trait
+// Lecture: Implementing custom debug trait
+// we can modify or extend the default debug trait of rust
 use std::fmt::{Debug, Display, Formatter, Result};
 
-// #[derive(Debug)] // the thing is we're going to edit the default rust debug trait
+// #[derive(Debug)] // the thing is we're going to edit, the default
+// rust debug trait for our AppleType enum and also the apple struct
 enum AppleType {
     RedDelicious,
     GrannySmith,
@@ -10,7 +12,7 @@ enum AppleType {
 impl Display for AppleType {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> Result {
         match self {
-            AppleType::RedDelicious => write!(formatter, "🍎 Delicious 🍎"), // TODO: something else need it to do  here
+            AppleType::RedDelicious => write!(formatter, "🍎 Delicious 🍎"),
             AppleType::GrannySmith => write!(formatter, "🍏 Granny Smith 🍏"),
         }
     }
@@ -25,7 +27,6 @@ impl Debug for AppleType {
     }
 }
 
-// #[derive(Debug)]
 struct Apple {
     kind: AppleType,
     price: f64,
@@ -44,6 +45,8 @@ impl Debug for Apple {
             "Apple ::: [ kind: {}, Price: {} ]",
             self.kind, self.price
         )
+        // notice we're relying on the debug trait we created
+        // for kind, we can use the our display if we want
     }
 }
 
@@ -58,6 +61,7 @@ fn main() {
         price: 1.15,
     };
 
-    println!("{:?}", lunch_snack); // now it is using the default debug trait instead of the display one
+    // println!("{:?}", lunch_snack); // this will use the display trait
+    println!("{:?}", lunch_snack); // this will use the debug trait, not the default one, but ours.
     println!("{:?}", dinner_snack);
 }
