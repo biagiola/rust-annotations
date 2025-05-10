@@ -6,6 +6,8 @@ enum AppleType {
     GrannySmith,
 }
 
+// Enum does not implement the Display trait of rust core by default so
+// we have to implement it, for the two arms of the enum in our case
 impl Display for AppleType {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> Result {
         match self {
@@ -23,6 +25,11 @@ struct Apple {
 impl Display for Apple {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> Result {
         write!(formatter, "{} for {}", self.kind, self.price)
+        // The write! macro is used here to format the string. 
+        // Since `AppleType` now implements `Display`, the enum variant gets formatted as a string.
+
+        // `self.kind` is an enum variant, so we pass it to the write macro.
+        // Thanks to the `Display` impl on `AppleType`, it automatically gets formatted into a string.
     }
 }
 
