@@ -31,3 +31,7 @@ fn main() {
     // our logic operation there. For example for some kind of rules
     // our sums is a + b plus an extra fees o whatever. 
 }
+
+// Also, think of an associated type as a required “fill-in-the-blank”
+// that lives inside the trait impl, whereas a generic parameter is
+// a blank that lives outside on every use-site of the trait.
