@@ -3,10 +3,14 @@
 // an owned parameter, because either one of those situations
 // would create a dangling reference.
 
+// We absolutely can return references from a function, 
+// but only when those references point to data that outlives the function call
+// and we're talking about in the next lecture.
+
 fn create() -> &i32 {
     // It doesnt matter if the data is stored on the heap or the stack
     let age: i32 = 100;
-    &age;
+    &age; // age is dropped here
 }
 
 fn create_slice(item: Vec<i32>) -> &[i32] {
@@ -22,3 +26,7 @@ fn create_number_reference(number: i32) -> &i32 {
 fn main() {
 
 }
+
+// . Local bindings: (age, number) live only for the duration of the function.
+// . Owned parameters (items: Vec<i32>) are moved in, and then dropped when the function exits.
+// . Returning a &T to any of those would leave a reference pointing at freed memory—which Rust forbids.

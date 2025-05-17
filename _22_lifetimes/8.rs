@@ -23,6 +23,14 @@
 // Either one will work coz rust will use deref coercion
 // to coerce either type to this expected type of some
 // fragment of some collection of strings.
+
+// So now, let's focus on the actually topic of the lecture.
+// We said we can return references from a fn only when those references
+// point to data that outlives the function call.
+// So we can return reference of items, that at the same time
+// it's a reference of another variables on the funcion call,
+// for example cities and coffes on main fn. let's see concrete examples
+// in the next lecture.
 fn select_first_two_elements(items: &[String]) {
     let selected_items = &items[..2];
     println!("{selected_items:?}");
@@ -36,9 +44,10 @@ fn main() {
     ];
     select_first_two_elements(&cities);
 
-    // even with two different lifetimes, the select fn
+    // btw, something to point about lifetimes fn that doesnt have returns.
+    // Even with two different lifetimes, the select_first_two_elements fn
     // is still able to operate.
-    // Also, the borrow checker does not have to worry 
+    // The borrow checker does not have to worry 
     // coz it does not have to track the lifetime of 'items'
     // parameter after the selec fn ends. There's no return value
     // so no risk for dangling reference

@@ -29,3 +29,19 @@ fn main() {
         println!("{two_coffees:?}")
     }
 }
+
+// Remember this code? Here we're creating item as a parameter of the fn
+// and that will be drop it when the function ends.
+fn create_slice(item: Vec<i32>) -> &[i32] {
+    &items;
+    // &item[0..2] // also not allowed
+}
+
+// Here we also create a parameter called items, but is a reference, so
+// it's pointing to some variable on the function caller. And also the
+// returned value from this function is the same of the variable from
+// the function caller and the reference parameter of select_first_two_elements
+// function.
+fn select_first_two_elements(items: &[String]) -> &[String] {
+    &items[..2]
+}
