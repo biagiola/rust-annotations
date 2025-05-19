@@ -71,3 +71,7 @@ fn main() {
 // The explicit <'a> just spells out what Rust already infers.
 // fn select_first_two_elements     (items:   &[String]) ->    &[String] {
 // fn select_first_two_elements<'a>(items: &'a [String]) -> &'a [String] {
+
+// side note: in the previews example code we don't to put the 'a and everything
+// compile the same, that's because rust can it infer thanks to the lifetime
+// elision rules behind the scenes. We're going to talk about in futre lectures.
