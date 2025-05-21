@@ -12,16 +12,17 @@ fn choose_favorite(first: &str, second: &str) -> &str {
     } else {
         second
     }
-    // sometimes we're going to return the reference for first sometimes and others the seconds reference
+    // sometimes we're going to return the reference of variable first and others the second variable reference
     // so the borrow checker does not know anything about the lifetime of our desire &str and the outlive
     // variable where both must be connected.
 }
 
 // that's is another example. If we dont put the 'a the signature will be not define exactly
-// in terms of the lifetime annotations for our borrow checker. In this example we only care
-// about the existence of the variable that has 'a, first variable in our case
+// in terms of the lifetime annotations for our borrow checker. In this example, we use the 'a
+// and we only care about the existence of the variable that has 'a,
+// first variable in our case
 fn choose_favorite<'a>(first: &'a str, second: &str) -> &'a str {
-    println!("{second}");
+    println!("{second}"); 
     first
 }
 
