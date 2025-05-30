@@ -1,8 +1,17 @@
 // Trait Hierarchy
-// In Rust, closures implement one of three traits that define how they
-// can be called: FnOnce, FnMut, and Fn.
+// How a closure interacts with its captured environment determines which of the three
+// closure traits it implements: FnOnce, FnMut, and Fn.
+// These traits dictate whether the closure consumes (takes ownership of), mutates (mutably borrows),
+// or only reads (immutably borrows) its environment.
 // These traits are related through a hierarchy where Fn is the most restrictive
 // and FnOnce is the most flexible.
+
+// . Every closure implements FnOnce, as any closure can conceptually be called at least once,
+//   potentially consuming its environment in the process.
+// . Closures that do not consume their environment (they only borrow it mutably or immutably)
+//   also implement FnMut, allowing them to be called multiple times while potentially changing their environment.
+// . Closures that only require immutable access to their environment (or capture nothing) also
+//   implement Fn, allowing them to be called multiple times without changing their environment.
 // This means any closure that implements Fn also satisfies the requirements of FnMut
 // and FnOnce, and any closure that implements FnMut also satisfies FnOnce.
 
