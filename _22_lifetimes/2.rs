@@ -19,7 +19,7 @@ fn main() {
     let dog: String = String::from("Watson");
 
     {
-        let my_pet: String = &dog;
+        let my_pet: &String = &dog;
         println!("{}", my_pet);
     }
 
@@ -27,7 +27,7 @@ fn main() {
 
     {
         // we can have another independent block scope
-        let my_pet: String = &dog;
+        let my_pet: &String = &dog;
         println!("{}", my_pet);
     }
 }
