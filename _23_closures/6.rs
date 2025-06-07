@@ -1,4 +1,4 @@
-// Lecture: Closure with ownership. FnOnce
+// Lecture: FnOnce traits closures
 
 fn main() {
     let number: i32 = 13;

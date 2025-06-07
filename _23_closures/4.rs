@@ -1,3 +1,5 @@
+// Lecture: Fn traits closures
+
 fn main() {
     let multiplier = 5; // technically a u8 type
 
@@ -6,13 +8,14 @@ fn main() {
     let multiply_by = |value| value * multiplier;
     println!("{}", multiply_by(3 as u8));
 
-    // now vectors do not implement the copy trait
-    let numbers = vec![4, 8, 15, 16, 23, 42];
-    // println!("{:?}", numbers);
+    // the trait for multiply_by is Fn because just read values for the ouside environment,
+    // in this case, it read a stack variable u8.
 
-    // but we only make a print, we don't change anything,
+    // now same thing with heap data for Fn traits coz we're only reading variables. 
+    let numbers = vec![4, 8, 15, 16, 23, 42];
+
     // it does not need to borrow an mutable reference, thus
-    // an immutable reference is sufficient
+    // an immutable reference is sufficient.
     let print_numbers = || println!("{:?}", numbers);
     print_numbers();
 

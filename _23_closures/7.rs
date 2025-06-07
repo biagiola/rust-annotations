@@ -9,21 +9,22 @@ fn main() {
     let first_name = String::from("Alice");
     let last_name = String::from("Wonder");
 
-    // let capture_string = || {
-    //     // since we're just reading, we're not borrowing anything.
-    //     println!("{first_name}");
-    // };
+    // the default rust behaviour will not take ownership
+    let capture_string = || {
+        // since we're just reading, we're not borrowing anything.
+        println!("{first_name}");
+    };
 
+    // but with the move keyword we can force to take ownership
+    // so forcde the borrow of immutable references of rust.
     let capture_string = move || {
-        // but with the move keyword we can force to take ownership
-        // so forcde the borrow of immutable references of rust.
         println!("{first_name} {last_name}");
     };
-    // println!("{first_name}"); // so, both values was moved
+    // println!("{first_name}"); // all values has been moved
 
     // the big confution is that if we see the type that rust analyzer
     // give us is just a Fn closure (impl Fn()) and we can indeed
-    // invoke it multiple times.
+    // invoke it multiple times like a normal Fn does.
     capture_string();
     capture_string();
     capture_string();
@@ -34,6 +35,7 @@ fn main() {
 
     // we can wonder why is a FN and why is it capable of running multiple times?
     // Why is it not an FnOnce
-    // We can find more discussion about this on: https://www.udemy.com/course/learn-to-code-with-rust/learn/lecture/47564919#overview
+    // We can find more discussion about this on:
+    // https://www.udemy.com/course/learn-to-code-with-rust/learn/lecture/47564919#overview
 }
 

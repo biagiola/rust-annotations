@@ -7,10 +7,12 @@ fn main() {
     let food: &str = option.unwrap_or_else(|| "Pizza");
     println!("{food}");
 
+    // example of a inline closure
     // let option: Option<&str> = None;
     // let food: &str = option.unwrap_or_else(|| "Pizza");
     // println!("{food}");
 
+    // example of closure with more line of code
     let option: Option<&str> = None;
     let pizza_fan: bool = false;
     let closure = || {
@@ -27,7 +29,7 @@ fn main() {
     // Now what is the advantage of the closure? Well, now
     // we have execute multiple lines of logic that also has
     // access to data from the outside scope.
-    // for example we can have a variable comming from a db,
+    // For example we can have a variable comming from a db,
     // file or the body of a http request, so we can use that
     // in our closure an make a more dynamic procesdure for
     // our else or fallback.

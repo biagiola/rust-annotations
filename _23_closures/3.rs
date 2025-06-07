@@ -1,6 +1,6 @@
 // Trait Hierarchy
 // How a closure interacts with its captured environment determines which of the three
-// closure traits it implements: FnOnce, FnMut, and Fn.
+// closure traits it implements: Fn, FnMut and FnOnce.
 // These traits dictate whether the closure consumes (takes ownership of), mutates (mutably borrows),
 // or only reads (immutably borrows) its environment.
 // These traits are related through a hierarchy where Fn is the most restrictive
@@ -12,16 +12,21 @@
 //   also implement FnMut, allowing them to be called multiple times while potentially changing their environment.
 // . Closures that only require immutable access to their environment (or capture nothing) also
 //   implement Fn, allowing them to be called multiple times without changing their environment.
-// This means any closure that implements Fn also satisfies the requirements of FnMut
-// and FnOnce, and any closure that implements FnMut also satisfies FnOnce.
 
-// The main difference between them lies in how they capture variables from
-// their environment. FnOnce takes ownership of captured values, so it can only
-// be called once. This is because once the closure takes ownership of a value,
-// it cannot be reused. FnMut borrows captured values mutably, which allows the closure
-// to be called multiple times and modify the captured data.
+// This means any closure that implements Fn also satisfies the requirements of FnMut
+// and FnOnce, and any closure that implements FnMut also satisfies FnOnce. The main difference
+// between them lies in how they capture variables from their environment.
+
+// FnOnce takes ownership of captured values, so it can only
+// be called once. This is because once the closure takes ownership of a value, it cannot
+// give them back to the outter variable outside of the closure, so it cannot be resued.
+
+// FnMut borrows captured values mutably, which allows the closure to be called multiple times
+// and modify the captured data each time it's called.
+
 // Fn, on the other hand, borrows captured values immutably, allowing multiple calls
-// but no mutation.
+// but no mutation. It just borrows the variable for reading if it is the case, because
+// Fn also can, for example from a hardocoded string, so no need any variable from anywhere.
 
 // These traits are additive in the sense that a function expecting a closure that
 // implements FnOnce can also accept closures that implement FnMut or Fn.
