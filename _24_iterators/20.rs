@@ -17,8 +17,9 @@ fn main() {
     // values.
     let evens: Vec<i32> = numbers
         .into_iter()
-        .filter(|number| number % 2 == 0) // remember also that iterator are lazy, meaning that we're designating the
-        .collect(); // transformation logic, but not executing or exhausting yet.
+        .filter(|number| number % 2 == 0) // |number: &i32|
+        .collect(); // remember also that iterator are lazy, meaning that we're designating the 
+        // transformation logic, but not executing or exhausting yet.
 
     println!("{evens:?}"); // here is the actual execution
 }
