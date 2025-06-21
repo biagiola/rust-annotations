@@ -48,8 +48,8 @@ fn main() {
     println!("{good_channels:#?}");
 }
 
-
-// let good_channels: Vec<&TVChannel> = channels
+// Turbo fish declaration style
+// let good_channels = channels
 //     .iter()
 //     .filter(|channel| { channel.channel_type == ChannelType::ProgrammingTutorials })
 //     .collect::<Vec<&TVChannel>>();
