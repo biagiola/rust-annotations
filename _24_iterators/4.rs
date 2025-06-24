@@ -11,6 +11,8 @@ fn main() {
     for number in my_iterator {
         println!("{number}");
     }
+
+    // println!("{my_iterator:?}"); // it was exausted by the for loop
 }
 
 // side notes

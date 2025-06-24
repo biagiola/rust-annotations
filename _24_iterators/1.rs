@@ -2,6 +2,7 @@
 // Full declarative and rust idiomatic way, more consice
 // and reduction in chance or errors.
 
+// full imperative
 fn main() {
     let numbers = vec![4,8, 15, 16, 23, 42];
 
@@ -18,7 +19,8 @@ fn main() {
     }
 }
 
-
+// dont use break, but we need still to use the greater
+// comparation and also update the counter
 fn main() {
     let numbers = vec![4,8, 15, 16, 23, 42];
 
@@ -31,6 +33,7 @@ fn main() {
     }
 }
 
+// full declarative
 fn main() {
     let numbers = vec![4,8, 15, 16, 23, 42];
 
