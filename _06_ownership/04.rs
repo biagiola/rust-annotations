@@ -16,6 +16,8 @@ fn main() {
 	food = "eggs";
 	println!("{food}");
 
+	// &str doesn't have mutation methods like push, push_str, etc.
+
 	// Also, dynamic strings from input user, reading content from a file etc, these variables are saved into the heap
 	let text: String = String::new();
 
