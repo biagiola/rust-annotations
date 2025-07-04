@@ -1,17 +1,20 @@
 fn main() {
     // a heap variable
     let oranges: String = String::from("Orange");
+    println!("{:p}", &oranges);
+
     print_my_value(oranges);
+    // println!("{}", oranges); // we cannot use oranges anymore
 }
 
 fn print_my_value(value: String) {
-    // println!("{:p}", &value);
+    println!("{:p}", &value);
 
     println!("Your value is {value}");
-    // 'oranges' will move its ownership to 'value' and
-    // 'value' deallocates itself from the heap and after finish fn
-    // and going back to main, oranges is not longer the owner of anything.
+    // When we call the function, ownership moves from 'oranges' to 'value'
+    // 'value' deallocates the heap memory when this function finishes
+    // and back in main, 'oranges' is no longer the owner of anything.
     
-    // Compiler suggest to call the fn in this away:
+    // Compiler suggests to call the fn this way to keep oranges usable:
     // print_my_value(oranges.clone());
 }
