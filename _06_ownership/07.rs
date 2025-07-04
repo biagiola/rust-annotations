@@ -6,7 +6,7 @@ fn main() {
 
     let person: String = String::from("David Biagiola");
     let user: String = person;
-    // For 'user', we're not using copy trait. Rust copy the
+    // For 'user', we're not using copy trait. Rust moves the
     // reference of the heap data, the length and capacity
     // from the person stack entry to a new 'user' stack entry.
     // There is sill one piece of heap data, but now we have
