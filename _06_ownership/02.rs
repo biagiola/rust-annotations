@@ -8,8 +8,9 @@ fn main() {
 
 // both variables are sent to the stack due the fixed sizes.
 // stack are LIFO style, so after finish the flow, is_handsome variable will be deallocated first.
- 
-// | OWNER       - VALUE|
-// | is_handsome - true |
-// | age         - 33   |
-//  ------ STACK --------
+
+// ----------------------
+// | OWNER        VALUE|
+// | is_handsome  true |
+// | age          33   |
+// ------ STACK --------

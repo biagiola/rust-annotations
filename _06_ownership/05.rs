@@ -7,7 +7,7 @@ fn main() {
     // | OWNER     - VALUE |
     // | reference - x556b |
     // | length    - 5     | 
-    // | capacity  - 10    |  | Boris    |
+    // | capacity  - 10    |  | Boris    | // TODO: check if this is true. is saving the value in the heap in that way?
     // |------ STACK ------|  |-- HEAP --|
  
     // After the push

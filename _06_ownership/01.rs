@@ -23,22 +23,29 @@
 // . The stack and the heap are two different parts/regions of the computer's memory.
 // . The stack and the heap read and write data in different ways that offer advantages and disadvantages
 
-// The stack (LIFO) is generally fast, but it only supports data of a fixed, predictable constant size and also, that size must be known at compile time. The heap is generally slower, but it supports dynamic data that can change in size over the program's execution.
-// Data types like integers, floating-points, booleans, characters and arrays have a fixed size. Rust stores them on the stack at runtime. The pieces of data on the stack will not grow or shrink in size as the program runs.
+// The stack (LIFO) is generally fast, but it only supports data of a fixed, predictable constant size and also,
+// that size must be knownat compile time.
+// The heap is generally slower, but it supports dynamic data that can change in size over the program's execution.
+// Data types like integers, floating-points, booleans, characters and arrays have a fixed size.
+// Rust stores them on the stack at runtime. The pieces of data on the stack will not grow or shrink in size as the program runs.
 
 // . The heap is a large area of storage space. Think of it like a warehouse.
 // . The heap is for data whose size is not known at compile time (user input, a file's content, etc)
-// . When the rust program needs dynamic space, it request it from the heap. A program called the memory allocator finds an empty spot that is large enough to store the data.
+// . When the rust program needs dynamic space, it request it from the heap.
+// . A program called the memory allocator finds an empty spot that is large enough to store the data.
 
 // References:
 // . The memory allocator returns a reference, which is an address.
 // . the reference points to the memory address of the data.
 // . Think of a parking lot giving you a reference (spot "h25") when they park your car.
-// . We can store a reference in a variable in a rust program. References have a fixed size, so Rust stores them on the stack.
+// . We can store a reference in a variable in a rust program.
+// . References have a fixed size, so Rust stores them on the stack.
 
 // The Heap II
-// . Allocating on the heap is slower than pushing to the stack. The memory allocator has to spend time searching for an open spot large enought to fit the data.
-// . Accesing data is faster on the stack than the heap as well. With a heap, the program has to follow the pointer to find the memory address.
+// . Allocating on the heap is slower than pushing to the stack.
+// . The memory allocator has to spend time searching for an open spot large enought to fit the data.
+// . Accesing data is faster on the stack than the heap as well.
+// . With a heap, the program has to follow the pointer to find the memory address.
 // . A stack stores the data in sequence, so there is less "jumping around" from point to point.
 
 // . The porpuse of ownership is to assign responsibility for deallocating memory (primary heap memory)
