@@ -7,15 +7,15 @@ fn main() {
     // second option: use reference, borrowing ownership
     // where languages array is still the actual owner of 
     // all the elements of the array, including the first.
-    let new_value: &String = &languages[0];
-    println!("{new_value} {languages:?}");
+    let new_value: &mut String = &mut languages[0];
 
-    // this push_str doesn not make sense even if it
-    // a mutable variable coz new_value is not a raw
-    // string but a reference to a raw string or String in this case.
-    new_value.push_str(" Programming Language");
+    // println!("{new_value} {languages:?}"); // we cannot print languages right now coz it's borrowed.
+    new_value.push_str(" Programming Language"); // and the borrowed will affect to the original owner.
 
-    // but we can modify languages array
-    languages[0].push_str(" Programming Language");
+    println!("{new_value}");
+    println!("{languages:?}");
+
+    // also we can modify languages array directly
+    languages[0].push_str(" is awesome");
     println!("{languages:?}");
 }
