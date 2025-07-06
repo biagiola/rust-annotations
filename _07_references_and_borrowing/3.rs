@@ -17,3 +17,22 @@ fn main() {
 
 // a n b has thier own unique address on the stack, but both hold the same
 // information, that is the address of coffe variable.
+
+// STACK MEMORY:
+// ┌─────────────────────────────────────────────────────┐
+// │ coffe (at stack address 0x1000):                    │
+// │   ├── ptr: 0x5000 (points to heap "Mocha")          │
+// │   ├── len: 5                                        │
+// │   └── capacity: 8                                   │
+// ├─────────────────────────────────────────────────────┤
+// │ a (at stack address 0x1010):                        │
+// │   └── 0x1000 (points to coffe's stack location)     │
+// ├─────────────────────────────────────────────────────┤
+// │ b (at stack address 0x1020):                        │
+// │   └── 0x1000 (points to coffe's stack location)     │
+// └─────────────────────────────────────────────────────┘
+
+// HEAP MEMORY:
+// ┌─────────────────────────────────────────────────────┐
+// │ Address 0x5000: "Mocha"                             │
+// └─────────────────────────────────────────────────────┘
