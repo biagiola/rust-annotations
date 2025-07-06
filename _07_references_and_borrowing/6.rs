@@ -9,5 +9,5 @@ fn main() {
 // we trying to return a ref that has been deallocated
 fn create_city() -> &String {
     let city = String::from("New York");
-    &city;
+    &city
 }
