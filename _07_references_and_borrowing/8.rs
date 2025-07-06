@@ -4,12 +4,11 @@ fn main() {
         String::from("Golang")
     ];
 
-    // String type of the heap does not implement the copy trait
-    // so, if it not implements copy trait, we should implement
-    // reference, and in that case languages it not longer we the full
-    // owner of its values, it'll be partial owner of its elements
-    // and that cannot make sense.
-    // let first: String = languages[0];
+    // Strings does not implement the copy trait so, if it not implements copy trait,
+    // we should use reference, and in that case languages variable will not be the full
+    // owner of its values, it'll be just partial owner of its elements and that cannot make sense.
+    // so, we need to use clone method to create a full copy of the string. 
+    // let first: String = languages[0]; // this will not work coz it's not a copy trait.
 
     // first possible solution: use clone method
     let mut first: String = languages[0].clone();
