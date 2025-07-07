@@ -7,14 +7,11 @@ fn main() {
 }
 
 // String::from creates a heap-allocated String:
-// 1. It allocates memory dynamically on the heap
-// 2. It owns the string data, so it can be modified
-// 3. It is not stored in the binary (unlike string literals)
+// 1. Allocates memory dynamically on the heap
+// 2. Owns the string data, so it can be modified
+// 3. Not stored in the binary (unlike string literals)
 
-// In the case of string literals, I mean, the &str version
-// they are store into the 'binary', in other words, it's
-// embedded directly into the compiled program's read-only memory,
-// static memory, instead of being allocated dynamically on the heap.
+// String literals (&str) are stored in the binary:
 // 1. Stored in the program's read-only memory (.rodata section)
-// 1. Exists for the entire duration of the program (static lifetime)
-// 2. Cannot be modified, because it's immutable
+// 2. Exist for the entire duration of the program (static lifetime)
+// 3. Cannot be modified because they're immutable
