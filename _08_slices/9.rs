@@ -5,6 +5,6 @@ fn main() {
     s = "New String"; // ✅ Allowed: Changing the reference
     println!("{:p} {0}", s);
 
-    s.push_str(" World!"); // ❌ Error: `push_str` is not available for `&str`
-    // so, we cannot modify its value, just pointing to a new one.
+    // s.push_str(" World!"); // ❌ Error: `push_str` is not available for `&str` coz
+    // it's immutable, just pointing to a new one.
 }
