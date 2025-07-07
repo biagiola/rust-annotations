@@ -1,17 +1,17 @@
 fn main() {
     let action_hero: String = String::from("Arnold Schwarzenegger");
-    let string_reference: &String = &action_hero; // moving ownership
+    let string_reference: &String = &action_hero; // borrowing, NOT moving ownership
 
-    // Now action_hero is borrowring the value of string_reference
-    // so we can't print its address due the dangling reference
+    // string_reference is borrowing FROM action_hero (not the other way around)
+    // We can still print action_hero because immutable borrowing allows this
     println!("{0}", action_hero);
 
-    // this drop is gonna fail coz it was borrowed
+    // This drop would fail because action_hero is currently borrowed by string_reference
     // drop(action_hero);
     println!("{:p}: {0}", string_reference);
 
-    // {:p} prints the memory address of string_reference, which is stored on the stack.
-    // {0} prints the value of action_hero, which is stored on the heap.
-    // Since string_reference is still valid, the reference can be safely used.
+    // {:p} prints the stack address where action_hero is stored
+    // {0} prints the value that string_reference points to ("Arnold Schwarzenegger")
+    // No dangling reference here - both action_hero and string_reference are valid
 }
 

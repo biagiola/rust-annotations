@@ -6,18 +6,17 @@ fn main() {
     println!("{string_reference}");
 
     // but now we take a slice of the String
-    let first_name: &str = &action_hero[0..6]; // six first bytes
-    // here, Rust is going to dereference the address
-    // to get to the original value in memory but now
-    // we are storing the address, not of the complete string text on the heap
-    // and basically, an address to just the first 6 bytes which
-    // comprises the content Arnold (we're using english alphabet)
+    let first_name: &str = &action_hero[0..6]; // first 6 bytes
+    // Here, Rust creates a slice reference (&str) that contains:
+    // 1. A pointer to the starting position in the heap (where "Arnold" begins)
+    // 2. A length (6 bytes)
+    // The slice doesn't copy the data - it just references part of the original string
 
     let last_name: &str = &action_hero[7..21];
     println!("{first_name} {last_name}");
 
     // same example but with numbers
     let numbers: [i32; 5] = [1, 2, 3, 4, 5];
-    let slice_num:  &[i32] = &numbers[0..3];
+    let slice_num: &[i32] = &numbers[0..3];
     println!("{slice_num:?}");
 }
