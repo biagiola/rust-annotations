@@ -1,6 +1,6 @@
 fn main() {
-    // Concatenation: only the Strings can use this coz
-    // they can grow in sizes due
+    // Concatenation: only Strings can use this coz
+    // they can grow in size due to the heap allocation.
     let mut full_name: String = String::from("Sylvester");
     let last_name: &str = "Stallone";
 
@@ -9,10 +9,10 @@ fn main() {
     println!("{full_name}");
     println!("{last_name}");
 
-    // Quick site note: push_str expects a &str, but if last_name was a String,
-    // we can pass to it as a &String, and rust through a feature called deref coercion,
-    // rust can convert this ref string to the expected parameter.
-    // So &String -> &str. Rust know that there's no danger to doing this because
-    // it just create a string slice from a ref string. It creates a borrow of some portion of text stored
-    // stored somewhere else. It just so happens that new that text is stored on the heap.
+    // Quick side note: push_str expects a &str as parameter, but if last_name was a String,
+    // we can pass it as a &String, and Rust, through a feature called deref coercion,
+    // can convert this &String to the expected parameter, &str.
+    // &String -> &str. Rust knows that there's no danger to doing this because
+    // it just creates a string slice that points to the existing String data on the heap.
+    // No new text is created - it's just a different view of the same data.
 }
