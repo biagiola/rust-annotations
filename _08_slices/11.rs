@@ -7,11 +7,15 @@ fn main() {
     let last_name: &str = &action_hero[7..]; // talking until the last byte
     println!("{last_name}");
     
+    // string slice - full sliced string
     let full_name: &str = &action_hero[..];
-    // let full_name: &String = &ction_hero; it would be the same    
-    // be with a different type.
-    // the advantage of a slice is where we want to take portion of
+
+    // reference to a string - it would be the same
+    let full_name: &String = &action_hero;
+
+    // the advantage of a slice is when we want to take a portion of
     // the string like first_name and last_name examples.
+    // the advantage of a reference is when we want to take a reference to the whole string.
 
     println!("{full_name}");
 }
