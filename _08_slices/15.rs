@@ -8,6 +8,6 @@ fn main() {
     println!("{}", new_name);
 }
 
-// If we use &str, we cannt modify it, to pointing to
-// a new string, so action_hero can no be affected outside
-// its scope in other fn.
+// &str is immutable - we cannot modify the string data it points to.
+// We can only return references to existing strings or string literals.
+// The original action_hero variable is unaffected because &str doesn't allow modification.
