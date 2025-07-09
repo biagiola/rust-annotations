@@ -1,9 +1,9 @@
 fn main() {
     // arrays are fixed data type saved into the stack
-    let rick_moranis_movies: [&str; 3] = ["Ghostbusters", "Honey, Ishrunk Kids", "Spaceballs"];
+    let rick_moranis_movies: [&str; 3] = ["Ghostbusters", "Honey, I Shrunk the Kids", "Spaceballs"];
 
     // Vector in the other hand, are heap data type the Vec is in the rust prelude.
-    // We have toprovide the type argument: i32, String. // TODO: also generics ?
+    // We have to provide the type argument: i32, String.
     let pizza_diameter: Vec<i32> = vec![8, 12, 14];
     println!("{:?}", pizza_diameter);
 
