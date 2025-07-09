@@ -3,7 +3,9 @@ fn main() {
     
     // ❌ WRONG: This doesn't compile!
     // let first_initial = &airline[0];
-    
+
+    // UTF-8 safety: Index 0 might split a multi-byte character
+
     // ✅ CORRECT METHODS:
     
     // Method 1: Get first character as Option<char>
@@ -37,5 +39,43 @@ fn main() {
     // Safe way:
     if let Some(first_char) = german.chars().next() {
         println!("First character safely: '{}'", first_char);
+    }
+    
+    // Getting specific characters (2nd, 3rd, etc.)
+    
+    println!("\n--- Getting Specific Characters ---");
+    
+    // ✅ BEST: Using chars().nth() for specific positions
+    if let Some(second_char) = german.chars().nth(1) {
+        println!("Second character: '{}'", second_char);  // 'b'
+    }
+    
+    if let Some(third_char) = german.chars().nth(2) {
+        println!("Third character: '{}'", third_char);   // 'e'
+    }
+    
+    if let Some(fourth_char) = german.chars().nth(3) {
+        println!("Fourth character: '{}'", fourth_char); // 'r'
+    }
+    
+    // ❌ INEFFICIENT: Chaining next() calls (don't do this!)
+    // let mut chars = german.chars();
+    // let first = chars.next();   // Skip first
+    // let second = chars.next();  // Get second
+    // let third = chars.next();   // Get third
+    
+    // ✅ EFFICIENT: Get multiple characters at once
+    let chars_vec: Vec<char> = german.chars().collect();
+    println!("All characters: {:?}", chars_vec);
+    
+    // Access by index (safe because we collected into Vec)
+    if chars_vec.len() > 1 {
+        println!("Second char from Vec: '{}'", chars_vec[1]);
+    }
+    
+    // ✅ ALTERNATIVE: Using enumerate to get both index and character
+    println!("\n--- All Characters with Index ---");
+    for (i, c) in german.chars().enumerate() {
+        println!("Character at index {}: '{}'", i, c);
     }
 }
