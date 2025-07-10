@@ -5,23 +5,65 @@ fn main() {
 
     let mut pizza_toppings: Vec<String> = vec![pepperoni, mushroom, sausage];
 
-    pizza_toppings[1] = String::from("Olives");
-    println!("{pizza_toppings:#?}");
+    // IMMUTABLE REFERENCES - These are fine, you can have multiple immutable refs
+    // Using get() method returns Option<&T> - safe way to access elements
+    let target_topping: Option<&String> = pizza_toppings.get(2);
+    match target_topping {
+        Some(value) => println!("Selected topping is: {value}"),
+        None => println!("No value at that index position")
+    }
 
-    // Partially transfer ownership error due the String does not implement the copy trait
-    // let target_topping: String = pizza_toppings[2];
-    let target_topping: &String = &pizza_toppings[2]; // but we can use its reference
-    // target_topping.push_str(" and Meatballs");
-    println!("{target_topping}");
+    // Multiple immutable references are allowed
+    let ref1 = &pizza_toppings[0];
+    let ref2 = &pizza_toppings[1];
+    let ref3 = &pizza_toppings[2];
+    println!("Multiple immutable refs: {ref1}, {ref2}, {ref3}");
 
-    // we cannot have two mutable borrows at the same time
-    // let another_topping: &mut String = &mut pizza_toppings[2];
+    // MUTABLE REFERENCES - Rust's borrowing rules apply here    
+    // This is fine - one mutable reference at a time
+    {
+        let mut_ref = &mut pizza_toppings[2];
+        *mut_ref = String::from("Olives");
+        println!("Modified topping: {mut_ref}");
+    } // mut_ref goes out of scope here
 
+    // This is also fine - the previous mutable reference is no longer active
+    {
+        let another_mut_ref = &mut pizza_toppings[2];
+        *another_mut_ref = String::from("Peppers");
+        println!("Modified again: {another_mut_ref}");
+    } // another_mut_ref goes out of scope here
+
+    // WHAT WON'T WORK - These would cause compile errors
     
+    // COMPILE ERROR: Cannot have multiple mutable references simultaneously
+    // let mut_ref1 = &mut pizza_toppings[2];
+    // let mut_ref2 = &mut pizza_toppings[2];  // ❌ This would fail
+    // println!("{mut_ref1}, {mut_ref2}");
 
-    // but here it's okay due the ended lifetime of the target_topping variable
-    // TODO: we cannot have multiple mut references, so check this code
-    // let another_topping: &mut String = &mut pizza_toppings[2];
-    // let another_one: &mut String = &mut pizza_toppings[2];
-    println!("{pizza_toppings:#?}");
+    // COMPILE ERROR: Cannot mix immutable and mutable references
+    // let immutable_ref = &pizza_toppings[2];
+    // let mutable_ref = &mut pizza_toppings[2];  // ❌ This would fail
+    // println!("{immutable_ref}, {mutable_ref}");
+
+    println!("Final pizza toppings: {pizza_toppings:#?}");
 }
+
+/*
+RUST BORROWING RULES SUMMARY:
+1. You can have EITHER:
+   - Any number of immutable references (&T)
+   - OR exactly ONE mutable reference (&mut T)
+   - BUT NOT BOTH at the same time
+
+2. References must always be valid (no dangling references)
+
+3. The borrow checker ensures memory safety by enforcing these rules at compile time
+
+4. When a reference goes out of scope, the borrow ends and you can create new references
+
+Why these rules exist:
+- Prevents data races in concurrent code
+- Ensures memory safety without garbage collection
+- Eliminates use-after-free and double-free errors
+*/
