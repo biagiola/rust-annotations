@@ -7,7 +7,7 @@ fn main() {
     let sausage: String = String::from("Sausage");
 
     // Clone the strings - original variables remain usable
-    let mut pizza_topping: Vec<String> = vec![
+    let mut pizza_toppings: Vec<String> = vec![
         pepperoni.clone(),
         mushroom.clone(),
         sausage.clone()
