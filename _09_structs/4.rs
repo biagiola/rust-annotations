@@ -1,4 +1,5 @@
 fn main() {
+    #[derive(Debug)]
     struct Coffee {
         price: f64,
         name: String,
@@ -14,5 +15,6 @@ fn main() {
 
     // Mocha String was deallocated by this new string
     beverage.name = String::from("Caramel Macchiato");
-    println!("{}", beverage.name);
+    println!("{:#?}", beverage);
+
 }
