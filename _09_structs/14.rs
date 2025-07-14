@@ -29,7 +29,9 @@ fn main() {
     song.display_song_info();
 }
 
-// Immutable struct value (self param takes ownership)
-// Mutable struct value (self param takes ownership, has permission to mutate)
-// Immutable ref to the struct instance (no ownership moved)
-// Mutable ref to the struct instance (no ownership moved, has permission to mutate)
+// Method receivers in `impl` blocks determine ownership and mutability.
+// There are four common forms:
+// 1. `self`: Takes ownership of the struct instance (moves it).
+// 2. `mut self`: Takes ownership and allows mutation.
+// 3. `&self`: Borrows the instance immutably.
+// 4. `&mut self`: Borrows the instance mutably.

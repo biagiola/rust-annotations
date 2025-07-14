@@ -1,3 +1,12 @@
+// Method receivers in `impl` blocks determine ownership and mutability.
+// There are four common forms:
+// 1. `self`: Takes ownership of the struct instance (moves it).
+// 2. `mut self`: Takes ownership and allows mutation.
+// 3. `&self`: Borrows the instance immutably.
+// 4. `&mut self`: Borrows the instance mutably.
+//
+// This example focuses on `self` and `mut self`, which move ownership.
+
 #[derive(Debug)]
 
 struct BobDylanSong {
@@ -7,43 +16,34 @@ struct BobDylanSong {
 }
 
 impl BobDylanSong {
-    // Immutable struct value (self param takes ownership)
+    // This method takes ownership of the instance via `self`.
+    // The instance is moved into the method and consumed.
     fn display_song_info(self) {
         println!("Title: {}", self.title);
         println!("Release Year: {}", self.release_year);
         println!("Duration: {}", self.duration_secs);
     }
 
-    // Mutable struct value (self param takes ownership, has permission to mutate)
+    // This method takes ownership and can mutate the instance via `mut self`.
+    // The instance is also moved and consumed here.
     fn double_length(mut self) {
         self.duration_secs = self.duration_secs * 2;
         println!("{:#?}", self);
     }
-    // fn print_message() {
-    //     println!("This is an associate function");
-    // }
 }
 
 fn main() {
     let song: BobDylanSong = BobDylanSong {
-        title: String::from("Like arolling stone"),
+        title: String::from("Like a Rolling Stone"),
         release_year: 1965,
         duration_secs: 194
     };
-    song.display_song_info();
-    // Here display_song_info method takes ownership of
-    // the BobDylanSong self variable, consuming the struct.
-    // So, we cannot use another method that use the same
-    // struct again, like double_lenth. Even if we want to
-    // use just for reading purpose without the mutation.
-    
-    // song.double_length(); // don't work if we use self on it.
-    // Examples about it using references it will use in 3 and 4 examples.
 
-    // Now, just as a side note. If we change double_length
-    // to not use the self, I mean, BobDylanSong struct, and
-    // make just a simple println, we're now getting not 
-    // a method but a associated function. So, we should
-    // use another syntax.
-    // BobDylanSong::print_message();
+    // The `display_song_info` method takes ownership of `song` via the `self`
+    // parameter. This "consumes" the struct instance.
+    song.display_song_info();
+
+    // Because `song` was moved (consumed) by the call above, it cannot be used
+    // again. The line below would cause a compile-time error.
+    // song.double_length(); // error[E0382]: use of moved value: `song`
 }
