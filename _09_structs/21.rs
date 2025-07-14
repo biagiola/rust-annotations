@@ -28,7 +28,7 @@ impl Computer {
 
 fn main() {
     let mut computer: Computer = Computer::new(String::from("M3 Max"), 64, 2);
-    // computer.upgrade_cpu("M4 Max");
+    // computer.upgrade_cpu("M4 Max".to_string());
     // computer.upgrade_memory(128);
     // computer.upgrade_disk(4);
 
