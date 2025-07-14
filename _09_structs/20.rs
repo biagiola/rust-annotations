@@ -6,8 +6,11 @@ struct BobDylanSong {
     duration: u32
 }
 
-// we can have multiple implementations, and make merge together
-// here is a dummy example just for know it, but we dive deep more in later lectures
+// In Rust, you are allowed to split the methods and associated functions for a
+// single struct into multiple impl blocks.
+// The compiler treats all the impl YourStructName blocks as if they were one big
+// implementation. Any instance of your struct will have access to all the methods
+// defined across all of its impl blocks.
 impl BobDylanSong {
     // in this case we use the associated fn but we could use any other
     fn new(title: String, release_year: u32, duration_secs: u32) -> Self {
