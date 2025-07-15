@@ -8,7 +8,7 @@ enum OperatingSystem {
 fn main() {
     let my_computer: OperatingSystem = OperatingSystem::MacOS;
     let age: u32 = years_since_release(my_computer);
-    println!("{result}");
+    println!("{age}");
 
     // just a recap on ownership rules, my_computer variable is
     // transfer its owner to the year_since_release fn
