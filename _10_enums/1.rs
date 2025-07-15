@@ -22,6 +22,18 @@ fn main() {
     println!("{:#?}", second_card);
 
     let card_suits: [CardSuit; 2] = [CardSuit::Hearts, CardSuit::Spades];
+    println!("{:#?}", card_suits[0]);
+
+    // shadowing with a new type and new values
     let card_suits: (CardSuit, CardSuit) = (CardSuit::Hearts, CardSuit::Clubs);
     println!("{:#?}", card_suits.0);
 }
+
+// Btw, the shadowing technique can be use to any rust data structure.
+// let data = User {
+//     id: 101,
+//     username: String::from("alice"),
+// };
+// let data = vec!["user_data", "transformed", "now_a_vector"];
+// let data = 42;
+// println("{data}");
