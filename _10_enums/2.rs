@@ -1,7 +1,7 @@
 #[derive(Debug)]
 
 enum PaymentMethodType {
-    // Credit(String, i32, bool) // we can have multiple types
+    Credit(String, i32, bool), // we can have multiple types at the same time
     CreditCard(String),
     DebitCard(String),
     Paypal(String)
