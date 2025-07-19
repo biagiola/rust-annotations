@@ -7,10 +7,11 @@ fn main() {
         String::from("Bass")
     ];
 
+    // we dont need to put the & simbol coz get method returns a reference
     let bass: Option<&String> = instruments.get(2); // copy without transfering ownership
     println!("{:?}", bass);
 
-    let valid_instrument: &String = bass.unwrap();
+    let valid_instrument: &String = bass.unwrap(); // also return a reference
     println!("{}", valid_instrument)
 
     //
@@ -18,6 +19,6 @@ fn main() {
     println!("{:?}", invalid_instrument);
     println!("example: {}", invalid_instrument.unwrap()); // dont' print this line
 
-    // more naive approach to get the real value from the Option enum but now let's use
-    // the unwrap method which attempts to extract the associated data out to the some variant.
+    // more naive approach to get the real value from the Option Enum but now let's use
+    // the unwrap method which attempts to extract the associated data out to the Some variant.
 }
