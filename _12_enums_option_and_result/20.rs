@@ -1,6 +1,12 @@
-// Building a Option from the scratch called MyOption
-
-// To emulate the buit-in Option of Rust, we need Copy for i32 but also Clone for String for example or to be clone when we pass through fn's arguments
+// A **mini-reimplementation** of Rust's built-in `Option<T>`
+// ----------------------------------------------------------
+// The real `Option` can wrap any type, but for demonstration
+// purposes we'll support only `i32` and call our enum `MyOption`.
+//
+// Deriving `Copy` + `Clone` means every `MyOption` value is *duplicated*
+// bit-by-bit on assignment or function calls.  That lets us pass the enum
+// around (or return it) without moving ownership—handy for these tiny
+// examples where cloning an `i32` is effectively free.
 #[derive(Debug, Copy, Clone)]
 enum MyOption {
     Some(i32),
@@ -8,14 +14,18 @@ enum MyOption {
 }
 
 impl MyOption {
-    fn unwrap(self) -> i32 { // and the self here is implementing a copy trait thanks to the directives declared above so alfter invocation, user doesn't loose ownership.
-        match self { // self in this case is a instance of the enum.
+    fn unwrap(self) -> i32 { // `self` is **copied**, so the caller keeps its original value.
+        match self {
             MyOption::Some(value) => value,
-            MyOption::None => panic!("Uh oh!!") // in the case of MyOption we cann't ommit its prefix. Just the built-in rust option could be that due the top level options variants, MyOption is a custom one.
+            // Using `panic!` here mimics the behavior of `Option::unwrap()`
+            // when it encounters a `None` at runtime.
+            MyOption::None => panic!("called `MyOption::unwrap()` on a `None` value")
         }
     }
 
     fn unwrap_or(self, fallback_value: i32) -> i32 {
+        // If we have a value, return it; otherwise return the caller-supplied
+        // default (`fallback_value`).  Exactly like `Option::unwrap_or()`.
         match self {
             MyOption::Some(value) => value,
             MyOption::None => fallback_value
@@ -25,8 +35,10 @@ impl MyOption {
 
 fn main() {
     let some_option2: MyOption = MyOption::Some(100);
-    println!("{}", some_option2.unwrap_or(13)); // TODO: this fn will take ownership but over a copy so we're not gonna loose the original enum.
+    // `unwrap_or` returns the inner value (100) because this is `Some`.
+    println!("{}", some_option2.unwrap_or(13));
 
     let some_option2: MyOption = MyOption::None;
+    // Returns the fallback (13) because this is `None`.
     println!("{}", some_option2.unwrap_or(13))
 }
