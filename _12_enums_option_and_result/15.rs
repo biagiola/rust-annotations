@@ -5,7 +5,9 @@ fn main() {
         String::from("Bass")
     ];
     
-    let bass: Option<&String> = musical_instruments.get(2); // copy without transfering ownership
+    // we know that get returns a reference from musical_instruments element that is immutable
+    // but the key is that bass can be still mutable, bass can change to point to something else
+    let mut bass: Option<&String> = musical_instruments.get(2);
     match bass {
         Option::Some(value) => println!("Playing the {value}"),
         Option::None => println!("Singing with my voice")
