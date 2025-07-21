@@ -36,6 +36,17 @@ impl BinarySearchTree {
             },
         }
     }
+
+    fn contains(&self, target: i32) -> bool {
+        match self {
+            BinarySearchTree::Empty => false,
+            BinarySearchTree::Node { value, left, right } => {
+                Ordering::Equal => true,
+                Ordering::Less => left.contains(target),
+                Ordering::Greater => right.contains(target),
+            }
+        }
+    }
 }
 
 fn main() {
@@ -48,4 +59,6 @@ fn main() {
     tree.insert(7);
 
     println!("{tree:#?}");
+
+    println!("{}", tree.contains(13));
 }
