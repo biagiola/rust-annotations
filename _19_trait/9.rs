@@ -106,6 +106,7 @@ fn main() {
 
 }
 
-// now we're using Accommodation trait, that one add a new booking into our data struct
-// we, is a perfect example of how use dynamic dispatch on mutable references. Remember,
+// now we're using Accommodation trait, that one add a new booking use, so is a writting trait,
+// so, our variable needs to be mutable in other to use that trait.
+// Is a perfect example of how use dynamic dispatch on mutable references. Remember,
 // dynamic dispatch is only working on references and also.
