@@ -20,7 +20,7 @@ struct Hotel<T> {
     reservations: HashMap<String, u32>
 }
 
-impl<T> Hotel<T> { // because we dont need the display trait affected on the construct, we separete it from the summarize one
+impl<T> Hotel<T> {
     fn new(name: T) -> Self {
         Self {
             name,
@@ -41,7 +41,7 @@ impl<T> Accommadation for Hotel<T> {
     }
 }
 
-impl<T> Description for Hotel<T> {} // in this way we're just using the default fn there.
+impl<T> Description for Hotel<T> {}
 
 #[derive(Debug)]
 struct AirBnb {
@@ -69,8 +69,6 @@ impl Description for AirBnb {
     }
 }
 
-// multiple trait bound for generic trait bounds example
-// the entity must to implement both, not just one.
 fn book_for_one_night<T: Accommadation + Description>(entity: &mut T, guest: &str) {
     entity.book(guest, 1);
 }
@@ -108,4 +106,6 @@ fn main() {
 
 }
 
-// dynamic dispatch tends to be slower than static dispatch and only work for references.
+// now we're using Accommodation trait, that one add a new booking into our data struct
+// we, is a perfect example of how use dynamic dispatch on mutable references. Remember,
+// dynamic dispatch is only working on references and also.
