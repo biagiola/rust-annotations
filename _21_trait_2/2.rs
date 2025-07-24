@@ -2,9 +2,15 @@
 trait Taxable {
     const TAX_RATE: f64 = 0.25;
 
-    // traits cannot guarantee fiels but behaivours, so we force to declare an amount
+    // Getter examples:
+    // traits cannot guarantee fiels but behaviours, so we force to declare an amount
     // getter for our trait and we called when we need it.
     fn amount(&self) -> f64;
+
+    // Additional methods that could be added:
+    fn after_tax_amount(&self) -> f64 {
+        self.amount() - self.tax_bill()
+    }
  
     // we set an default behaviour that can be override it.
     // so now both struct can use it here.
