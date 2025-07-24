@@ -4,15 +4,14 @@ trait Taxable {
 
     fn amount(&self) -> f64;
 
-    // now every data type, like structs, must to implement this
     fn set_amount(&mut self, new_amount: f64);
 
     fn double_amount(&mut self) {
         self.set_amount(self.amount() * 2.0);
     }
- 
+
     fn tax_bill(&self) -> f64 {
-        self.amount() * Self::TAX_RATE
+        self.amount() *Self::TAX_RATE
     }
 }
 
@@ -33,13 +32,13 @@ impl Taxable for Income {
 
 #[derive(Debug)]
 struct Bonus {
-    value: f64
+    amount: f64
 }
 
 impl Taxable for Bonus {
-    const TAX_RATE: f64 = 0.50;
+    const TAX_RATE: f64 = 0.5; // this will override the constant
 
-    fn amount(&self) -> f64 {
+    fn amount() -> f64 {
         self.value
     }
 
@@ -59,3 +58,17 @@ fn main() {
     bonus.double_amount();
     println!("Bonus tax owned: ${:.2}", bonus.tax_bill());
 }
+
+// We cannot avoid repeating the setter implementation on each struct, Bonus and Income.
+
+// In each trait implementation of Taxable, in Bonus and Income, we need to create the set_amount method.
+// We cannot define the body of the set_amount in the Taxable trait and try to call self.amount field to
+// reach its value because it is not defined there right actually, we just have a signature amount().
+// trait Taxable {
+//     fn set_amount(&mut self, new_amount: f64) {
+//         self.amount = new_amount; // Error: no field `amount` on type `Self`
+//     }
+// }
+
+// The amount field exists when we define the Bonus or Income instance
+
