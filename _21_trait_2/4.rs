@@ -1,5 +1,9 @@
 // Lecture: Supertraits I (Trait inheritance)
-trait Investment { // supertrait
+// Investment is the supertrait (parent)
+// Taxable is the subtrait (child)
+// Any type implementing Taxable gets access to both trait's methods
+
+trait Investment {
     fn amount(&self) -> f64;
 
     fn set_amount(&mut self, new_amount: f64);
@@ -9,12 +13,12 @@ trait Investment { // supertrait
     }
 }
 
-// a data struct that implements the Taxable traits must to implement
-// all the functionalities from the super and sub trait.
-// Also, Taxable requires Investment but  not the other way around.
-trait Taxable: Investment { // subtrait
+// A struct that implements Taxable must also implement Investment (the supertrait).
+// The struct gets access to methods from both traits.
+// Also, Taxable requires Investment but not the other way around.
+trait Taxable: Investment {
     const TAX_RATE: f64 = 0.25;
- 
+
     fn tax_bill(&self) -> f64 {
         self.amount() * Self::TAX_RATE
     }
@@ -35,7 +39,7 @@ impl Investment for Income {
     }
 }
 
-impl Taxable for Income {} // implements its default fns and values
+impl Taxable for Income {}
 
 #[derive(Debug)]
 struct Bonus {
@@ -53,7 +57,7 @@ impl Investment for Bonus {
 }
 
 impl Taxable for Bonus {
-    const TAX_RATE: f64 = 0.50; // override the default value
+    const TAX_RATE: f64 = 0.50; // overwrite the default value
 }
 
 struct QualityTime {
@@ -81,6 +85,12 @@ fn main() {
     bonus.double_amount();
     println!("Bonus tax owned: ${:.2}", bonus.tax_bill());
 
-    let weekend = QualityTime { minutes: 120.0 };
+    let mut weekend = QualityTime { minutes: 120.0 };
+    weekend.double_amount();
     println!("Relaxation time: {:.2} minutes", weekend.amount());
 }
+
+// What "MUST implement" means:
+// MUST implement = You have to provide the functionality
+// CAN use = You have access to all methods from both traits
+// CHOOSE to use = You decide which methods to actually call
