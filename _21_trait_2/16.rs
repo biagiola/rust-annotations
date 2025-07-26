@@ -30,6 +30,17 @@ fn main() {
 
 }
 
+fn main() {
+    let division: f64 = 0.0 / 0.0; // this is f64 but thorws a NaN
+    println!("{}", value == value);
+
+    let value: f64 = 3.4;
+    println!("{}", value == value);
+    println!("{}", division == division); // NaN is not equal to NaN technically, it's like comparing two undefined things
+
+    // in this case for float we cannot guarantee the Eq, so we use just the partialEq
+}
+
 // side notes
 // . reflexive: a == a , we should compare itself and it should give us true
 // . symmetric a == b implies b == a (required by PartialEq as well)
@@ -44,13 +55,12 @@ fn main() {
 // For example the f32 and f64, they will implement the PartialEq not the Eq trait.
 // and that's because the floats can't promise that htey fulfill the reflexivity
 // principle of the equality or Eq subtrait
-fn main() {
-    let division: f64 = 0.0 / 0.0; // this is f64 but thorws a NaN
-    println!("{}", value == value);
 
-    let value: f64 = 3.4;
-    println!("{}", value == value);
-    println!("{}", division == division); // NaN is not equal to NaN technically, it's like comparing two undefined things
+// PartialEq = “I can compare values with == (symmetry & transitivity)”.
+// Eq = “My == is a full equivalence relation (also reflexive)”.
+// Derived PartialEq compares all fields, but whether you may also implement Eq depends on the field types.
+// Floats (and any type containing them) cannot promise reflexivity because NaN != NaN, so they stay at PartialEq.
+#[derive(PartialEq)]      // OK
+struct Point { x: f64, y: f64 }
 
-    // in this case for float we cannot guarantee the Eq, so we use just the partialEq
-}
+// #[derive(Eq)]          // ERROR: f64 is not Eq
