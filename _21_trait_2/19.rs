@@ -16,3 +16,8 @@ fn main() {
     println!("{}", float_sum);
 }
 
+// Add is a standard rust core method and its definition is:
+// pub trait Add<Rhs = Self> {
+//     type Output;                 // associated type
+//     fn add(self, rhs: Rhs) -> Self::Output;
+// }
