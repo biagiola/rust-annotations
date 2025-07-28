@@ -2,6 +2,7 @@
 // this is a placeholder for a type that is required within a trait
 // similar to generics but specific for trait definitions
 
+// In our example 
 use std::ops::Add; // we import the add trait
 
 #[derive(Debug)]
@@ -9,17 +10,10 @@ struct Lunch {
     cost: f64
 }
 
-// impl Add for Lunch {
-//     type Output = f64; // this name is something that is defined in the trait
-//                        // and we need to implement it 
-
-//     fn add(self, rhs: Self) -> Self::Output {
-//         self.cost + rhs.cost + 2.0
-//     }
-// }
-
 // also, we can return a new Lunch struct 
 impl Add for Lunch {
+    // this is the placeholder, it is called an associated type;
+    // it is inherently linked—associated—with each implementation of the trait.
     type Output = Lunch;
 
     fn add(self, rhs: Self) -> Self::Output {
@@ -47,3 +41,14 @@ fn main() {
 // Also, think of an associated type as a required “fill-in-the-blank”
 // that lives inside the trait impl, whereas a generic parameter is
 // a blank that lives outside on every use-site of the trait.
+
+
+// impl Add for Lunch {
+//     type Output = f64; // this name is something that is defined in the trait
+//                        // and we need to implement it for the add in our case
+                          // but in other example we'll use other names
+
+//     fn add(self, rhs: Self) -> Self::Output {
+//         self.cost + rhs.cost + 2.0
+//     }
+// }
