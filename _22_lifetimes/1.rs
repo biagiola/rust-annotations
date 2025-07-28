@@ -1,5 +1,6 @@
-// Lecture: The lifetime of a value refers to how long it is calid within the code.
-// A value's lifetime is the tiem during which it exists at a particular memory address.
+// Lecture: The lifetime of a value refers to how long it is valid within the code.
+// A value's lifetime is the time during which it exists at a particular memory address.
+// Lifetimes prevents dangling references by specifying how long a reference should be valid.
 
 fn main() {
     let a = 1;
