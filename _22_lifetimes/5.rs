@@ -9,7 +9,7 @@ fn main() {
 
     let favorite_cities: &[String] = &cities[0..2];
     drop(cities); // we delete from the heap, so references is on dandling states
-    println!("{favorites_cities:?}");
+    println!("{favorite_cities:?}");
 }
 
 // another example
