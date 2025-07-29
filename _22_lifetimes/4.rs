@@ -2,7 +2,8 @@
 
 fn main() {
     let mut data = vec!['a', 'b', 'c']; // create a vector
-    let slice = &mut data[..]; // spread all its value into a new one
+
+    let slice = &mut data[..];
 
     capitalize(slice); // slice is passed into a function, transfering ownership
                        // and no longer live
@@ -15,3 +16,9 @@ fn main() {
 fn capitalize(word: &mut [char]) {
     println!("whatever, {:?}", word);
 }
+
+// side notes.
+// . data[..] creates a slice that references all elements of the vector
+// . &mut takes a mutable reference to that slice
+// . No values are copied - slice is a reference pointing to the same memory as data
+// . The slice contains references to the original data, not copies of the values.
