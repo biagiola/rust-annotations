@@ -7,6 +7,10 @@
 // but only when those references point to data that outlives the function call
 // and we're talking about in the next lecture.
 
+// If the term outlives is not clear to you, you can put it in other words like:
+// Point to a referent that last or lives longer than the referenced one.
+// Our "father" variable must to persists beyond, remeains after the reference.
+
 fn create() -> &i32 {
     // It doesnt matter if the data is stored on the heap or the stack
     let age: i32 = 100;
