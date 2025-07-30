@@ -1,5 +1,9 @@
 // Lecture: Lifetime elision rules I
-// // First Elision Rule: The compiler assigns a lifetime to eachparameter that is a reference.
+
+// Elision is the act of omitting something. Lifetime elision means omitting generic lifetime
+// annotations in situations where the borrow checker can infer the lifetime relationships automatically.
+
+// First Elision Rule: The compiler assigns a lifetime to each parameter that is a reference.
 // fn my_awesome_function<'a, 'b>(value: &'a i32, second: &'b str, third: String) -> &'a i32 { ... }
 
 // Second Elision Rule: if there is one reference parameter and the return value is a reference,
@@ -43,4 +47,4 @@ fn main() {
 // A return value cannot be a reference to an owned value, whether it be an original piece of data or
 // a parameter (and avoid dangling reference of course).
 // And if there's only one reference in the parameter list, then the two must be related, right?
-// That is, that is an obvious thing because it is the only possibility at least, right now in our examples.
+// That is an obvious thing because it is the only possibility at least, right now in our examples.

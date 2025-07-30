@@ -1,8 +1,8 @@
 // Lecture: Generic Lifetimes
 
-// remainder:
+// remember:
 // . A generic is a placeholder for a future type.
-// . Generics add flexibility byt no hardcoding an exact type
+// . Generics add flexibility by no hardcoding an exact type
 // . Code can use a variety of types in place of the generic
 
 // Generic lifetimes vs concrete lifetimes
@@ -38,7 +38,7 @@ fn select_first_two_elements<'a>(items: &'a [String]) -> &'a [String] {
     // is a reference, which thus prevents dangling references.
     // We are explicitly annotating what Rust inferred in the previous lesson.
 
-    // Take it in mind that, the connection is not really betwwen the return
+    // Take it in mind that, the connection is not really between the return
     // value and 'items'. It's more between the return value and the referent
     // from which 'items' comes from, the original source of data that 'items'
     // is a reference to.
@@ -52,6 +52,7 @@ fn main() {
     ];
     let two_cities: &[String] = select_first_two_elements(&cities);
     println!("{two_cities:?}");
+    // println!("{cities:?}");
 
     {
         let coffees: [String; 2] = [
@@ -71,6 +72,7 @@ fn main() {
 // The explicit <'a> just spells out what Rust already infers.
 // fn select_first_two_elements     (items:   &[String]) ->    &[String] {
 // fn select_first_two_elements<'a>(items: &'a [String]) -> &'a [String] {
+
 
 // side note: in the previews example code we don't to put the 'a and everything
 // compile the same, that's because rust can it infer thanks to the lifetime
