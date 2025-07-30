@@ -1,11 +1,11 @@
 // Lecture: the only case where we can return references
 // on function parameters
 
-// First approach: passing &Vec to our function
-// fn select_first_two_elements(items: &Vec<String>) {
-//     let selected_items: &[String] = &items[..2];
-//     println!("{selected_items}");
-// }
+// First approach: passing &Vec to our function but not returning
+fn select_first_two_elements(items: &Vec<String>) {
+    let selected_items: &[String] = &items[..2];
+    println!("{selected_items:?}");
+}
 
 // fn main() {
 //     let cities: Vec<String> = vec![
