@@ -26,6 +26,6 @@ fn main() {
 // the lifetime of orlando is from line  20 to the end
 // and liftime of san_francisco is from 21 to the end
 // so the 'a will be the shortest, the san_francisco one,
-// to make sure no one excees our outlives the lifetime of
+// to make sure no one excees or outlives the lifetime of
 // the other variable and thus guarantee tht a reference 
 // to either one is going to a valid one.
