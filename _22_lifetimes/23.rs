@@ -18,7 +18,7 @@ struct TravelPlan<'a> {
 fn main() {
     let from = String::from("Portland");
 
-    let plan: {
+    let plan = {
         let to = String::from("Bangor");
 
         let travel_plan: TravelPlan<'_> = TravelPlan {
@@ -38,7 +38,6 @@ fn main() {
         travel_plan.from
     };
     
-    &str = String::from("Bangor")
-    
-    println!("{:#?}");
+    println!("{}", plan);
+    // error[E0597]: `to` does not live long enough
 }

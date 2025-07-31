@@ -35,7 +35,7 @@ fn main() {
     // println!("{nj_transit}");
 
     let name: String = String::from("NJ Transit");
-    let nj_transit: TrainSystem<'_> = TrainSystem { name: &name };
+    let nj_transit: TrainSystem<'_> = TrainSystem { name: &name }; // TODO: Why '_ works and why the undeclared lifetime error if we use a name like 'a
 
     println!("{nj_transit:#?}");
 }

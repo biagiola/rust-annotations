@@ -21,7 +21,7 @@ fn main() {
     // 1000 lines of code making orlando lifetime way bigger than san_francisco's lifetime
     // so orlando and san_francisco doesn't have the same concrete lifetime.
     // They don't have to have the exact same lifetime due the 'a, that what 'a actually, 
-    // also means, that the overlap life between them, the region for which they exists,
+    // also means, that the overlap life between them, the region for which they both exists,
     // the return value must to live within that region or lifetime, because that's the
     // only way that we're going to guarantee the avoidance of dangling reference.
     println!("{orlando}");

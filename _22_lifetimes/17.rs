@@ -15,7 +15,7 @@ fn main() {
     let result = {
         let san_francisco = String::from("San Francisco");
         longest(&orlando, &san_francisco) // <- borrowed value does not live long enough
-        // here we have a possibillity of dangling reference coz, the we can return
+        // here we have a possibillity of dangling reference coz, we can return
         // san_francisco to set into the result variable, but we can delete that one
         // when we finish this scope. Result has the potencial of hold a dangling
         // reference.

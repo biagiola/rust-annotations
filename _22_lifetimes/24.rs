@@ -13,13 +13,6 @@ struct TravelPlan<'a, 'b> {
     to: &'b str
 }
 
-fn main() {
-    let from = String::from("Portland");
-    let plan: &str = figure_out_ending_point(&from);
-    
-    println!("{plan}");
-}
-
 fn figure_out_ending_point(from: & str) -> &str {
     let to = String::from("Bangor");
 
@@ -29,4 +22,11 @@ fn figure_out_ending_point(from: & str) -> &str {
     };
 
     travel_plan.from
+}
+
+fn main() {
+    let from = String::from("Portland");
+    let plan: &str = figure_out_ending_point(&from);
+    
+    println!("{plan}");
 }

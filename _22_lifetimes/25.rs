@@ -1,5 +1,14 @@
 // Lecture: static lifetimes
 
+// Static lifetimes ('static) represent data that lives for the entire duration of the program
+// - from start to finish. It's the longest possible lifetime in Rust.
+
+// What 'static means
+// . When you see &'static str or &'static i32, it means:
+// . This reference points to data that will never be deallocated
+// . The data exists from program startup until program termination
+// . You can safely use this reference anywhere, anytime in your program
+
 fn say_hello() -> &'static str {
     // this reference is data that is guaranteed to live for
     // the existance of the entire program coz it's direclty

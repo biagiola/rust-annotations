@@ -6,7 +6,7 @@ struct DentisAppointment {
 // what happens when we don't return a value from the self, so we need to avoid
 // third elision rule, so in that case we need to provide lifetimes annotations.
 // impl DentisAppointment {
-//   // in this case the borrow checker is inferring about the return value from self
+//   // in was the case where borrow checker was inferring about the return value from self
 //   fn book(&self, check_in_time: &str, check_out_time: &str) -> &str {
 //     println!(
 //       "You are booked from {} to {} with doctor {}",
@@ -16,9 +16,9 @@ struct DentisAppointment {
 //   }
 // }
 
-// full example
+// full example of our new situation we wanna implement, return a non self parameter
 // impl DentisAppointment {
-//   fn book<'a, 'b, 'c>(&'a self, check_in_time: &'a str, check_out_time: &'c str) -> &'c str {
+//   fn book<'a, 'b, 'c>(&'a self, check_in_time: &'b str, check_out_time: &'c str) -> &'c str {
 //     println!(
 //       "You are booked from {} to {} with doctor {}",
 //       check_in_time, check_out_time, self.doctor
@@ -36,18 +36,19 @@ impl DentisAppointment {
     );
     check_out_time
   }
-  // The most important thing here is by using one generci lifetime 'a, I've created the
+  // The most important thing here is by using one generic lifetime 'a, I've created the
   // marker or the arrow pointing from the parameter to the returned value, so now the 
   // borrow checker knows that the returned reference must live within the lifetime of the
-  // referent from wichi 'check_out_time' came.
+  // referent from wich 'check_out_time' came from.
 }
 
 fn main() {
   let appt = DentisAppointment {
     doctor: String::from("David"),
   };
+
   let result: &str = appt.book("03:00PM", "04:00PM");
   drop(appt); // now it doesn't matter if we drop it
-  println!("{result}");
+  println!("Your appointment will last until: {result}");
 
 }

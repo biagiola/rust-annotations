@@ -3,13 +3,14 @@
 // If the rules are sufficient to establish lifetime associations, leave out explicit
 // lifetime annotations because the borrow checker is able to figure them out.
 
+// These are the rules we've been taking about
 // . First rule is that every reference in a parameter list gets a lifetime,
 // . Second rule is that if the return value is a reference and there is only one
 // reference parameter, the borrow checker will associate the lifetimes of
-// the two together.
+// the two together. TODO: check it with file 13.rs file
 
 // Third Elision Rule: In a method definition, if there are multiple reference params
-// but one of them is self, the borrow checker will assume the lifetime of the instance
+// but one of them is self, the borrow checker will assume the lifetime of the instance itself
 // is connected to the lifetime of the return value.
 //
 struct DentisAppointment {
@@ -26,6 +27,7 @@ impl DentisAppointment {
     &self.doctor // this is s String but thanks to deref coersion we cast to &str
   }
 }
+
 fn main() {
   let appt = DentisAppointment {
     doctor: String::from("David"),
@@ -36,5 +38,6 @@ fn main() {
 
 }
 
-// so thanks to the third rule we can make shorter fn signature like this:
-// fn book(&self, check_in_time: &str, check_out_time: & str) -> & str { ... }
+// Thanks to the third rule, we dont need to add those lifetime annotations,
+// so we can make shorter fn signature like this:
+// fn book(&self, check_in_time: &str, check_out_time: & str) -> &str { ... }

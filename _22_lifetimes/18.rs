@@ -1,7 +1,7 @@
 // Lecture: Multiple parameters part II
 // Solution for the previous lesson
 
-// In this way we're saying we're considering the lifetime of the first param.
+// In this way we're saying we're considering the lifetime of the first parameter.
 // In this case, we don't need the 'b, but we use it just for demonstration purposes.
 // Now we're saying that both parameters have different, independent lifetimes.
 //
