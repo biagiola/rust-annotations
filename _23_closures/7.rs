@@ -10,13 +10,13 @@ fn main() {
     let last_name = String::from("Wonder");
 
     // the default rust behaviour will not take ownership
-    let capture_string = || {
-        // since we're just reading, we're not borrowing anything.
-        println!("{first_name}");
-    };
+    // let capture_string = || {
+    //     // since we're just reading, we're not borrowing anything.
+    //     println!("{first_name}");
+    // };
 
     // but with the move keyword we can force to take ownership
-    // so forcde the borrow of immutable references of rust.
+    // so force the borrow of immutable references of rust.
     let capture_string = move || {
         println!("{first_name} {last_name}");
     };
@@ -28,10 +28,14 @@ fn main() {
     capture_string();
     capture_string();
     capture_string();
+
     // So, it's ultimately how the moved values are used in the closure,
     // after the movement of ownership that determines how the compiler
     // will infer the type of the closure and which one of those three
     // FN traits it chooses.
+
+    // we cannot implement those values again using the move keyword
+    // println!("{first_name} {last_name}");
 
     // we can wonder why is a FN and why is it capable of running multiple times?
     // Why is it not an FnOnce

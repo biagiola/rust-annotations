@@ -27,4 +27,7 @@ fn main() {
 }
 
 // functions and its typifications are more strict because it's meant to be
-// used for any other section code rather closures is just for a one direct purpose 
+// used for any other section code rather closures is just for a one direct purpose
+
+// side note: multipler closure could be just direct a number but this intent is for
+// demostration purpose.
