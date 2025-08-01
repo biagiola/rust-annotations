@@ -15,7 +15,7 @@ impl<'a> Map<'a> {
     where
         F: FnMut(&Location),
     {
-        let final_index: usize = self.locations.len() - 1; // TODO: why usize?
+        let final_index: usize = self.locations.len() - 1;
         let mut current_index: usize = 0;
 
         while current_index <= final_index {
@@ -27,7 +27,7 @@ impl<'a> Map<'a> {
 }
 
 fn main() {
-    let locations = [
+    let locations: [Location; 2] = [
         Location {
             name: String::from("Enchanted Forest"),
             treasures: 5
@@ -38,16 +38,13 @@ fn main() {
         },
     ];
 
-    let map = Map {
-        locations: &locations,
-    };
-
+    let map = Map { locations: &locations };
     let mut total_treasures = 0;
 
     map.explore(|location| {
         // rust will dereference the reference to
         // get to the location struct and get its
-        // treasures field a u32
+        // treasures field a u32, so we don't need to use the *
         total_treasures += location.treasures;
     });
 
@@ -56,7 +53,6 @@ fn main() {
     // the beaty of the explorer method and the closure pattern
     // is that we can customize what happens on each invocation
     // of the explorer method.
-
     // For example we can still use the same method explore but
     // do total different operations using our closure
     let mut location_names: Vec<String> = Vec::new();
@@ -64,7 +60,12 @@ fn main() {
     map.explore(|location| {
         location_names.push(location.name.clone());
     });
-    println!("{location_names:?}");
+    println!("Places to visit: {location_names:?}");
+
+    // the only param the explore method receive is the actual closure body
+    // that will be the action, the operation to be done in when we execute
+    // it in the explore scope. The first time was to sum up integers from
+    // struct fields and the second time was to push strings into a Vector
 }
 
 // Reminder on lifetimes: we need lifetime annotation,
