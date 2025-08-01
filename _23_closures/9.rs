@@ -18,7 +18,7 @@ impl Vault {
     {
         let user_pass: String = procedure();
 
-        if user_pass == self.password {
+        if user_pass.trim() == self.password {
             Some(self.treasure)
         } else {
             None
@@ -36,10 +36,12 @@ fn main() {
     println!("Please provide a password to crack the vault");
     stdin().read_line(&mut user_input);
 
-    // there's no way hack being Fn or FnMut
+    // there's no way variable hack being Fn or FnMut because
+    // we're are consuming user_input, it isn't available after
+    // its closure body ends. Hance we're using the FnOnce.
     let hack = || user_input;
     let extraction: Option<String> = vault.unlock(hack);
-    println!("{:?}", extraction);
+    println!("result: {:?}", extraction);
 }
 
 // procedure closure can be only called once.

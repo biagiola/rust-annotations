@@ -15,7 +15,7 @@ impl Vault {
     {
         let user_pass: String = procedure();
 
-        if user_pass == self.password {
+        if user_pass.trim() == self.password {
             Some(self.treasure)
         } else {
             None
@@ -29,7 +29,9 @@ fn main() {
         treasure: String::from("Gold"),
     };
 
-    // now our closure is Fn trait
+    // Now our closure is Fn trait, because we're not capturing
+    // any external value. This time the user input is inside,
+    // returned and capture it by hack variable
     let hack = || {
         let mut user_input: String = String::new();
         println!("Please provide a password to crack the vault");
@@ -37,6 +39,9 @@ fn main() {
         user_input.trim().to_string()
     };
 
+    // remember that hack is a closure, not the final return value
+    // of the procedure. We're are passing the procedure to be executed
+    // on the unlock function.
     let extraction: Option<String> = vault.unlock(hack);
     println!("{:?}", extraction);
 }
@@ -48,6 +53,9 @@ fn main() {
 // So just because this says FnOnce does not mean that we are limited
 // to passing in a FnOnce closure, we can pass that in, but also
 // FnMut and Fn.
+
+// 9.rs: Closure captures external data → More restrictive (FnOnce)
+// 10.rs: Closure creates internal data → More flexible (Fn)
 
 // Finanlly just a reminder on different ways on setting our types for
 // the generics in our function signature
