@@ -1,13 +1,13 @@
 // Lecture: Fn traits I
-// The FN trait is a sub trait of the FN mutant super trait,
+// The Fn trait is a subtrait of the FnMut super trait,
 // and it represents a closure that captures immutable references
 // or doesn't capture any state at all.
 
 // Many of the inline closures that we defined implemented
-// the FN trait, but you'll find it to be pretty rare to
-// define a closure parameter that mandates the FN trait.
+// the Fn trait, but you'll find it to be pretty rare to
+// define a closure parameter that mandates the Fn trait.
 // It is the strictest one of the three because it cannot
-// accept an FN once closure or an FN mute closure
+// accept an FnOnce closure or an FnMut closure
 
 // This function takes a generic parameter `F` which must implement the `Fn()` trait.
 // That means the passed closure must be callable multiple times *without taking ownership*
@@ -17,8 +17,8 @@ where
     F: Fn(), // Fn trait: callable multiple times, must not consume captured variables
 {
     procedure();
-    procedure();
-    procedure();
+    // procedure();
+    // procedure();
 }
 
 fn main() {
@@ -30,7 +30,7 @@ fn main() {
     // `bosses` is no longer accessible after this point.
     let closure = || {
         let employees = bosses; // move occurs here
-        // `employees` is unused here, it's just for demonstration
+        // `employees` is not used here, it's just for demonstration
     };
 
     // This call will fail to compile because `closure` takes ownership of `bosses`,
@@ -42,7 +42,9 @@ fn main() {
     execute_thrice(closure);
 }
 
-// You can pass in an FN closure type where a FN once closure is expected,
+// You can pass in an Fn closure type where an FnOnce closure is expected,
 // but not the inverse. FnOnce is at the very top of the hierarchy,
-// and we cannot pass it in to a place that expects FN.
+// and we cannot pass it in to a place that expects Fn.
+// Even if our procedure is called just one time, we are breaking the rules
+// for the compiler.
 
