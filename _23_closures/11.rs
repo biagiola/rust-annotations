@@ -1,4 +1,10 @@
 // Lecture: The String.retain method I
+// In Rust, the retain function is a method available on several
+// collection types, including Vec<T>, String, and various collections
+// within std::collections like HashMap and HashSet. Its purpose is to
+// remove elements from the collection based on a given predicate,
+// keeping only those elements for which the predicate returns true.
+
 // An example of FnMut trait. Rembember, FnMut is a sub trait
 // of FnOnce, it can be called multiple times and will borrow
 // mutable references to any captured values.
