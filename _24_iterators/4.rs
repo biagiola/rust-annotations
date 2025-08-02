@@ -6,9 +6,24 @@
 
 fn main() {
     let my_vector = vec![4, 8, 12, 16, 23, 42];
-    let my_iterator = my_vector.into_iter();
+    let my_iterator = my_vector.into_iter(); // Explicitly create an iterator
+    
+    // for number in my_iterator { ... }: The for loop in Rust is designed to work with iterators.
+    // When you iterate over my_iterator, the loop repeatedly calls the next() method on the iterator
+    // until it returns None. Each Some(value) returned by next() is assigned to number.
+    for number in my_iterator { // Consume the iterator
+        println!("{number}");
+    }
 
-    for number in my_iterator {
+    // println!("{my_iterator:?}"); // it was exausted by the for loop
+}
+
+fn main() {
+    let my_vector = vec![4, 8, 12, 16, 23, 42];
+
+    // Relies on the for loop's syntactic sugar to implicitly call into_iter() on the collection.
+    // This is more concise and common when you simply want to iterate over and consume the collection's elements directly.
+    for number in my_vector { // Implicitly creates and consumes an iterator
         println!("{number}");
     }
 
