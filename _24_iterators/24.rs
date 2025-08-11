@@ -41,10 +41,10 @@ fn main() {
     // to trying to add by ourself so the compile will tell you any mismatch more properly.
     // let good_channels: Vec<_> = channels.iter().filter(|channel| {
     let good_channels: Vec<&TVChannel> = channels
-    .iter()
-    .filter(|channel| { channel.channel_type == ChannelType::ProgrammingTutorials })
-    .collect();
-    
+        .iter()
+        .filter(|channel| { channel.channel_type == ChannelType::ProgrammingTutorials })
+        .collect();
+
     println!("{good_channels:#?}");
 }
 
@@ -53,3 +53,7 @@ fn main() {
 //     .iter()
 //     .filter(|channel| { channel.channel_type == ChannelType::ProgrammingTutorials })
 //     .collect::<Vec<&TVChannel>>();
+
+// Just a short recap: Floats only implement PartialEq and not the Eq trait,
+// because of NaN—not because of decimal precision,
+// but because NaN breaks the rules required for total equality (Eq).
