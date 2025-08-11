@@ -12,13 +12,14 @@ fn main() {
     let squares = my_iterator.map(|number: &i32| number.pow(2));
 
     // nobody took ownerhsip of numbers
-    println!("{numbers:?}");
+    println!("Numbers: {numbers:?}");
 
-    // map over my_iterator took ownership
-    // println!("{my_iterator}");
+    // squares took ownership over my_iterator
+    // println!("{my_iterator:?}");
 
     // pow is not apply jet until we begin to exhaust the variable
-    println!("{squares:?}");
+    // we have defined the clousure, but it will apply when we loop it.
+    println!("Squares: {squares:?}");
 
     // here, we begin to make use of the pow operation
     for number in squares {
