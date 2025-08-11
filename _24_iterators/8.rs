@@ -9,16 +9,16 @@ fn main() {
     todos.insert("Sleep", false);
 
     // OWNERSHIP
-    // for (todo, completion_status) in todos { // todo: &str, completion_status: bool
-    //     println!("Task: {todo}. Complete: {completion_status}");
-    // }
-    // println!("{todos:?}"); // we loose ownership
+    for (todo, completion_status) in todos { // todo: &str, completion_status: bool
+        println!("Task: {todo}. Complete: {completion_status}");
+    }
+    println!("{todos:?}"); // we loose ownership
 
     // IMMUTABLE REFERENCES
-    // for (todo, completion_status) in &todos { // todo: &&str, completion_status: &bool
-    //     println!("Task: {todo}. Complete: {completion_status}");
-    // }
-    // println!("{todos:?}"); // now it keep its ownershop
+    for (todo, completion_status) in &todos { // todo: &&str, completion_status: &bool
+        println!("Task: {todo}. Complete: {completion_status}");
+    }
+    println!("{todos:?}"); // now it keep its ownershop
 
     // MUTABLE REFERENCES
     // for (todo, completion_status) in &mut todos { // todo: &&str, completion_status: &mut bool
@@ -35,3 +35,17 @@ fn main() {
     }
     println!("{todos:?}");
 }
+
+// SUMMARIZE
+
+// OWNERSHIP
+// for value in collection
+// for value in collection.into_iter()
+
+// IMMUTABLE REFERENCES
+// for value in &collection
+// for value in collection.iter()
+
+// MUTABLE REFERENCES
+// for value in &mut collection
+// for value in collection.iter_mut()
