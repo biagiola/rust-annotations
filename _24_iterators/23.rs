@@ -6,8 +6,11 @@ fn main() {
     // let first_even: Option<i32> = numbers.into_iter().find(|number| number % 2 == 0);
     // let first_even: Option<&i32> = numbers.into_iter().find(|number| *number % 2 == 0);
     // let first_even: Option<i32> = numbers.into_iter().copied().find(|number| number % 2 == 0);
+    
+    // let first_even: Option<&i32> = numbers.iter().find(|number| *number % 2 == 0);
     let first_even: Option<i32> = numbers.iter().copied().find(|number| number % 2 == 0);
     println!("{first_even:?}");
+    println!("{numbers:?}");
 
     let first_odd: Option<i32> = numbers.iter().copied().find(|number| number % 2 != 0);
     println!("{first_odd:?}");
