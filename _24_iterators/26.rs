@@ -33,20 +33,26 @@ fn main() {
         },
     ];
 
-    // let good_channels: Vec<_> = channels
-    //     .iter()
-    //     .filter(|channel| channel.channel_type == ChannelType::ProgrammingTutorials)
-    //     .collect();
-    // println!("{}", good_channels.len() == channels.len());
+    // All method, under the hood
+    let good_channels: Vec<_> = channels
+        .iter()
+        .filter(|channel| channel.channel_type == ChannelType::ProgrammingTutorials)
+        .collect();
+    println!("{}", good_channels.len() == channels.len());
+
+    // All method, better aproach
     let all_are_rust = channels
         .iter()
         .all(|channel| channel.channel_type == ChannelType::ProgrammingTutorials);
     println!("{all_are_rust}");
 
-    // let good_channel = channels
-    //     .iter()
-    //     .find(|channel| channel.channel_type == ChannelType::ProgrammingTutorials);
-    // println!("{}", good_channel.is_some());
+    // Any method, under the hood
+    let good_channel = channels
+        .iter()
+        .find(|channel| channel.channel_type == ChannelType::ProgrammingTutorials);
+    println!("{}", good_channel.is_some());
+
+    // Any method, better aproach 
     let any_are_rust = channels
         .iter()
         .any(|channel| channel.channel_type == ChannelType::ProgrammingTutorials);
