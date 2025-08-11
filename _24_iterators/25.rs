@@ -1,5 +1,5 @@
 // Lecture: The filter and find methods VI
-// From the previous lecture, let say we want a vector of the names  that
+// From the previous lecture, let say we want a vector of the names that
 // we have on the channels vector.
 
 #[derive(Debug, PartialEq, Eq)]
@@ -35,14 +35,16 @@ fn main() {
         },
     ];
     
+    // 1. Without using references, also without taking ownership
     let good_channels: Vec<String> = channels
-        .iter() // using ref we're not loosing ownership to later make another iteration use
-        .filter(|channel| { channel.channel_type == ChannelType::ProgrammingTutorials })
-        .map(|channel| { channel.name.clone() }) // we need to use clone to avoid take ownership of this heap data
-        .collect(); // and it's with this method that we actually perform the actual collection of the values for good_channels
+        .iter()
+        .filter(|channel| channel.channel_type == ChannelType::ProgrammingTutorials )
+        .map(|channel| channel.name.clone() ) // we need to use clone to avoid take ownership of this heap data
+        .collect();
+    println!("{good_channels:?}");
 
-    
-    // When you borrow references you dont have to worry about ownershipt but you have to deal with the complexity of references.
+    // 2. Using references, also without taking ownership
+    // When you borrow references you dont have to worry about ownership but you have to deal with the complexity of references.
     // So, it's always trade offs.
     let good_channels: Option<&TVChannel> = channels
         .iter()
