@@ -11,6 +11,7 @@ fn main() {
     for number in my_iterator {
         println!("{number}");
     }
+    // println!("{my_iterator:?}"); // `my_iterator` moved due to this implicit call to `.into_iter()`
 }
 
 // Even though iterators need to be mutable to call `.next()`,
