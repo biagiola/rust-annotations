@@ -6,13 +6,19 @@ fn main() {
     let my_vector = vec![4, 8, 12, 16, 23, 42];
     let my_iterator = my_vector.iter(); // no ownership was taken
 
-    // however, my_iterator lost ownership on the for loop
-    // for number in my_vector { // number: &i32
-    for number in &my_vector { // short version to avoid to use .iter()
+     // we need to use the iterator; number: &i32
+    for number in my_iterator {
         println!("{number}");
     }
+    println!("{my_vector:?}"); // still available
+    // however, my_iterator lost ownership on the for loop
+    // println!("{my_iterator:?}");
 
-    println!("{my_vector:?}");
+    // short version to avoid to use .iter()
+    for number in &my_vector {
+        println!("{number}");
+    }
+    println!("{my_vector:?}"); // still available
 
     // example with heap data
     let cities: Vec<String> = vec![
@@ -24,5 +30,5 @@ fn main() {
     for city in &cities {
         println!("{city:?}");
     }
-    println!("{cities:?}");
+    println!("{cities:?}"); // still available
 }
