@@ -13,18 +13,21 @@ fn main() {
     let seafood: &str = "Oyster🦪";
 
     // Print row information
+    print!("Print each row information: ");
     for byte in seafood.bytes() {
         // this will give us the numeric representation of this string
         // and its bytes in memory
         print!("{byte}/"); // use a slash just for readability
     }
+    println!();
 
     // print each character
+    print!("Print each character: ");
     for character in seafood.chars() {
         print!("{character}");
     }
 
     println!(); // one break like to separate it from the previous print
-    println!("{}", seafood.bytes().len());
-    println!("{}", seafood.chars().count());
+    println!("Lenght: {}", seafood.bytes().len());
+    println!("Count: {}", seafood.chars().count());
 }
