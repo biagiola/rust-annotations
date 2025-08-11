@@ -16,6 +16,13 @@ fn count_characters(text: &str) -> HashMap<char, u32> {
     counts
 }
 
+fn print_each_word(text: &str) {
+    for word in text.split_whitespace() {
+        println!("{word}");
+    }
+}
+
 fn main() {
+    // print_each_word("Sally sells sea shells by the sea shore");
     println!("{:?}", count_characters("Sally sells sea shells by the sea shore"));
 }
