@@ -8,6 +8,11 @@ fn main() {
         String::from("Boris"),
     ];
 
+    // let name_lengths = names
+    //     .iter()
+    //     .map(|name| name.to_lowercase().replace("i", "@@").len())
+    //     .collect::<Vec<usize>>();
+
     let name_lengths = names
         .iter()
         .map(|name| name.to_lowercase())    // &String
