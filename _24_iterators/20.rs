@@ -15,13 +15,22 @@ fn main() {
     // Also regarless your iteration method, filter will use references. Rust
     // doesn't want to accidentally move ownership when it's using the original
     // values.
+    // So even we're using into_iter that takes ownership this will compile anyways
+    // with a warning to change .into_iter() for .iter() and again, the filter
+    // method always use references anyways.
     let evens: Vec<i32> = numbers
         .into_iter()
-        .filter(|number| number % 2 == 0) // |number: &i32|
-        .collect(); // remember also that iterator are lazy, meaning that we're designating the 
+        .filter(|number| *number % 2 == 0) // |number: &i32|
+        .map(|n| *n)            // .copied() is the same here
+        .collect::<Vec<i32>>(); // remember also that iterator are lazy, meaning that we're designating the 
         // transformation logic, but not executing or exhausting yet.
 
     println!("{evens:?}"); // here is the actual execution
+
+    // // example of heap data and iterate with into_iter that normally takes ownership
+    // let names = ["David", "Dana", "Oscar", "Jules"];
+    // let members = names.into_iter().filter(|name| name.len() > 5).collect();
+    // println!("{members}");
 }
 
 // For arrays like numbers variable, in Rust before 1.53, calling .into_iter()
