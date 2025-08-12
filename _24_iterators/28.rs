@@ -3,16 +3,18 @@
 // of elements from an iterator.
 
 fn main() {
-    let stocks = ["nvda", "", "aapl", "msft", "goog"];
+    let stocks = ["nvda", "", "aapl", "msft", "", "goog"];
 
-    let capitalized_stocks = stocks
+    // filter and map separated
+    let capitalized_stocks: Vec<String> = stocks
         .iter()
         .filter(|stock| !stock.is_empty())
         .map(|stock| stock.to_uppercase())
-        .collect::<Vec<String>>();
+        .collect();
     println!("{capitalized_stocks:?}");
 
-    let capitalized_stocks = stocks
+    // filter_map approach
+    let capitalized_stocks: Vec<String> = stocks
         .iter()
         .filter_map(|stock| {
             if stock.is_empty() {
@@ -21,6 +23,6 @@ fn main() {
                 Some(stock.to_uppercase())
             }
         })
-        .collect::<Vec<String>>();
+        .collect();
     println!("{capitalized_stocks:?}");
 }

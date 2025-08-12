@@ -1,3 +1,5 @@
+// Lecture: The cloned method
+
 fn main() {
     // The copied method converts an iterator
     // from storing &T elements to T elements.
@@ -5,7 +7,7 @@ fn main() {
     // The T data type must implement the Copy trait.
 
     // The cloned method similarly converts and
-    // iterator from storing &T elements to T elements.
+    // iterates from storing &T elements to T elements.
     // It makes a clone of each T element.
     // The T data type must implement the Clone trait.
     let teas = [
@@ -15,7 +17,10 @@ fn main() {
     ];
 
     // iterator has &String --> String
-    let more_teas: Vec<String> = teas.iter().cloned().collect();
+    let more_teas: Vec<String> = teas
+        .iter()
+        .cloned()
+        .collect();
     println!("{more_teas:?}");
     println!("{teas:?}");
 
