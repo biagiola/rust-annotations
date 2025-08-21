@@ -45,4 +45,7 @@ fn main() {
     
     let playlist: Playlist = Playlist::from_iter(songs);
     println!("{playlist:?}");
+
+    // let playlist: Playlist = songs.iter().collect::<Playlist>();
+    // println!("{playlist:?}");
 }
