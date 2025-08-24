@@ -67,6 +67,9 @@ mod test {
         // the order of the arguments does not matter in rust
         assert_eq!(museum.revenue, 25);
 
+        // the assert_ne (not equal) macro validates that two values are not equal.
+        assert_ne!(museum.revenue, 50);
+
         // assert macro validates that some condition or vlaue is true
         assert_eq!(museum.has_impressive_collection(), false);
     }
@@ -74,10 +77,10 @@ mod test {
     #[test]
     fn museum_can_have_impressive_art_collection() {
         let mut museum = Museum::new();
-        museum.buy_paiting("Mona Lisa");
-        museum.buy_paiting("The Starry Night");
-        museum.buy_paiting("Girl with a Pearl Earring");
-        museum.buy_paiting("The Starry Night");
+        museum.buy_painting("Mona Lisa");
+        museum.buy_painting("The Starry Night");
+        museum.buy_painting("Girl with a Pearl Earring");
+        museum.buy_painting("The Starry Night");
 
         assert!(museum.has_impressive_collection());
     }
