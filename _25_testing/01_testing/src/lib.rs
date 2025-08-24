@@ -62,9 +62,23 @@ mod test {
         // our 'testing' library but because we only have one level down
         // is exacly the same as use super keyword
         // let mut museum = crate::Museum::new();
-
-
         museum.sell_ticket();
+
+        // the order of the arguments does not matter in rust
         assert_eq!(museum.revenue, 25);
+
+        // assert macro validates that some condition or vlaue is true
+        assert_eq!(museum.has_impressive_collection(), false);
+    }
+
+    #[test]
+    fn museum_can_have_impressive_art_collection() {
+        let mut museum = Museum::new();
+        museum.buy_paiting("Mona Lisa");
+        museum.buy_paiting("The Starry Night");
+        museum.buy_paiting("Girl with a Pearl Earring");
+        museum.buy_paiting("The Starry Night");
+
+        assert!(museum.has_impressive_collection());
     }
 }
