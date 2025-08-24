@@ -47,6 +47,7 @@ mod test {
     // we are going to use some fns from the outside we maybe is better
     // to import then all and use later in a shorthand version.
     use super::*;
+    use pretty_assertions::{assert_eq, assert_ne};
     // and also importing all sometimes is not a good practice due the name conflicts but
     // in this case is okay for our small library
 
@@ -68,7 +69,7 @@ mod test {
         assert_eq!(museum.revenue, 25);
 
         // the assert_ne (not equal) macro validates that two values are not equal.
-        assert_ne!(museum.revenue, 50);
+        assert_ne!(museum.revenue, 25);
 
         // assert macro validates that some condition or vlaue is true
         assert_eq!(museum.has_impressive_collection(), false);
