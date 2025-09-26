@@ -3,7 +3,7 @@
 // an owned parameter, because either one of those situations
 // would create a dangling reference.
 
-// We absolutely can return references from a function, 
+// We absolutely can return references from a function,
 // but only when those references point to data that outlives the function call
 // and we're talking about in the next lecture.
 
@@ -17,8 +17,10 @@ fn create() -> &i32 {
     &age; // age is dropped here
 }
 
-fn create_slice(item: Vec<i32>) -> &[i32] {
-    &items;
+// here we're returning something that is going to be destroyed first
+// error: expected `&Vec<i32>`, found `()
+fn create_slice(item: Vec<i32>) -> &'static Vec<i32> {
+    &item;
     // &item[0..2] // also not allowed
 }
 
@@ -26,9 +28,10 @@ fn create_number_reference(number: i32) -> &i32 {
     &number; // same as above but with a stack value, not allowed also.
 }
 // you can return the number itsel, the value, but not the reference
- 
-fn main() {
 
+fn main() {
+    let values: Vec<i32> = vec![2, 4, 8, 10, 12];
+    create_slice(values);
 }
 
 // . Local bindings: (age, number) live only for the duration of the function.
