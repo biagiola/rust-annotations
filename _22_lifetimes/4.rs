@@ -5,16 +5,25 @@ fn main() {
 
     let slice = &mut data[..];
 
-    capitalize(slice); // slice is passed into a function, transfering ownership
-                       // and no longer live
+    // slice is passed into a function, transfering ownership
+    // and no longer live, but its referent is still valid.
+    operate_char_array(slice);
+    operate_char_vector(&mut data);
 
     data.push('d'); // and before instruction non-lexical lifetimes on rust
-    data.push('e'); // this will throws errors, but now, slice lifetime is    
+    data.push('e'); // this will throws errors, but now, slice lifetime is
     data.push('f'); // ended but it not affect to the original variable lifetime
+    println!("{:?}", data);
 }
 
-fn capitalize(word: &mut [char]) {
+fn operate_char_array(word: &mut [char]) {
+    // we cannot push to a array, it's fixed size
     println!("whatever, {:?}", word);
+}
+
+fn operate_char_vector(words: &mut Vec<char>) {
+    words.push('z');
+    println!("whatever, {:?}", words);
 }
 
 // side notes.
