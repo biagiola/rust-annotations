@@ -8,7 +8,9 @@ fn main() {
     ];
 
     let favorite_cities: &[String] = &cities[0..2];
-    drop(cities); // we delete from the heap, so references is on dandling states
+
+    // we delete from the heap, so references is on dandling states
+    drop(cities);
     println!("{favorite_cities:?}");
 }
 
@@ -21,8 +23,7 @@ fn main() {
             String::from("Barcelona"),
         ];
 
-        &cities[0..2]; // we trying to return a reference to something is deleted
-        // of that ref can not be reach and save it into some_cities variable
+        &cities[0..2];
+        // we trying to return something will be deleted from the heap
     }
 }
-
