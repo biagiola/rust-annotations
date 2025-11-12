@@ -1,8 +1,15 @@
-// Same example is comming from the 6.rs file but adding the display trait for each of our enums.
+// Same example is coming from the 6.rs file but adding the display trait for each of our enums.
 //
 // It's the standard way to make a type convertible to a user-facing String is to implement
 // the std::fmt::Display trait for it.
 // This trait tells Rust how to create a human-readable representation of your type.
+// And, we cannot use Display traits with enums direclty so we need to implemented manually.
+// Unlike Debug (which can be derived with #[derive(Debug)]), the Display trait cannot be
+// automatically derived.
+// 
+// There's no single "correct" way to display a type to users. For the Meat enum, should
+// it display as "Chicken", "chicken", "CHICKEN", "🐔", or something else? The compiler
+// can't decide this for you.
 //
 // Once you implement Display, you can:
 // Use the {} format specifier in println! and other formatting macros.
