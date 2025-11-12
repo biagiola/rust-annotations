@@ -29,3 +29,10 @@ fn main() {
     OnlineOrderStatus::Delivered.check();
     OnlineOrderStatus::Shipped.check();
 }
+
+// This feature is part of Rust's comprehensive pattern matching system.
+// The | acts as a logical OR within the pattern itself, allowing you to
+// combine multiple possible values or patterns into a single arm of the match expression.
+// Syntax: pattern_1 | pattern_2 | ... => expression
+// Benefit: It eliminates the need for fall-through logic (like in C or C++)
+// or repeating the same code block for multiple cases, making the code much cleaner and less error-prone.
